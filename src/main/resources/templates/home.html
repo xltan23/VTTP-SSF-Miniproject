@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+</head>
+<body>
+    <h1>Welcome <span data-th-text="${displayName}"></span></h1>
+    <form action="/food/options" method="POST">
+        <input type="hidden" name="name" data-th-value="${displayName}">
+        <div>
+            <label for="minCalories">Minimum Calories:</label>
+            <input type="text" name="minCalories">
+        </div>
+        <div>
+            <label for="minCarbs">Minimum Carbohydrates</label>
+            <input type="text" name="minCarbs">
+        </div>
+        <div>
+            <label for="minProtein">Minimum Protein</label>
+            <input type="text" name="minProtein">
+        </div>
+        <div>
+            <label for="maxFat">Maximum Fats</label>
+            <input type="text" name="maxFat">
+        </div>
+        <div>
+            <input type="submit" value="GO!">
+        </div>        
+    </form>
+</body>
+</html>

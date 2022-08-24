@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food List</title>
+</head>
+<body>
+    <table>
+        <tr data-th-each="food : ${foodList}">
+            <td data-th-text="${food.id}"></td>
+            <td data-th-text="${food.title}"></td>
+            <td data-th-text="${food.image}"></td>
+            <td data-th-text="${food.imageType}"></td>
+            <td data-th-text="${food.calories}"></td>
+            <td data-th-text="${food.protein}"></td>
+            <td data-th-text="${food.fat}"></td>
+            <td data-th-text="${food.carbs}"></td>
+        </tr>
+    </table>
+</body>
+</html>
