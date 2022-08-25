@@ -6,16 +6,34 @@
     <title>Food List</title>
 </head>
 <body>
+    <h1><span data-th-text="${displayName}"></span>, Your food choices!</h1>
     <table>
         <tr data-th-each="food : ${foodList}">
-            <td data-th-text="${food.id}"></td>
-            <td data-th-text="${food.title}"></td>
-            <td data-th-text="${food.image}"></td>
-            <td data-th-text="${food.imageType}"></td>
-            <td data-th-text="${food.calories}"></td>
-            <td data-th-text="${food.protein}"></td>
-            <td data-th-text="${food.fat}"></td>
-            <td data-th-text="${food.carbs}"></td>
+
+            <form action="/food/save" method="POST">
+                <div>
+                    <h5>ID: <span data-th-text="${food.id}"></span></h5>
+                    <h3 data-th-text="${food.title}"></h3>
+                    <p>
+                        <h6 data-th-text="${food.image}"></h6>
+                        <h6 data-th-text="${food.imageType}"></h6>
+                        <h6 data-th-text="${food.calories}"></h6>
+                        <h6 data-th-text="${food.protein}"></h6>
+                        <h6 data-th-text="${food.fat}"></h6>
+                        <h6 data-th-text="${food.carbs}"></h6> 
+                    </p>
+                    <input type="hidden" name="name" data-th-value="${displayName}">
+                    <input type="hidden" name="id" data-th-value="${food.id}">
+                    <input type="hidden" name="title" data-th-value="${food.title}">
+                    <input type="hidden" name="image" data-th-value="${food.image}">
+                    <input type="hidden" name="imageType" data-th-value="${food.imageType}">
+                    <input type="hidden" name="calories" data-th-value="${food.calories}">
+                    <input type="hidden" name="protein" data-th-value="${food.protein}">
+                    <input type="hidden" name="fat" data-th-value="${food.fat}">
+                    <input type="hidden" name="carbs" data-th-value="${food.carbs}">
+                    <input type="submit" value="Save">
+                </div>
+            </form>
         </tr>
     </table>
 </body>

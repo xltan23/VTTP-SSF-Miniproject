@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Welcome <span data-th-text="${displayName}"></span></h1>
-    <form action="/food/options" method="POST">
+    <form action="/food" method="POST">
         <input type="hidden" name="name" data-th-value="${displayName}">
         <div>
             <label for="minCalories">Minimum Calories:</label>
@@ -29,5 +29,21 @@
             <input type="submit" value="GO!">
         </div>        
     </form>
+
+    <div>
+        <h1>Food Archive</h1>
+        <table>
+            <tr data-th-each="food : ${foodArchive}">
+                <td data-th-text="${food.id}"></td>
+                <td data-th-text="${food.title}"></td>
+                <td data-th-text="${food.image}"></td>
+                <td data-th-text="${food.imageType}"></td>
+                <td data-th-text="${food.calories}"></td>
+                <td data-th-text="${food.protein}"></td>
+                <td data-th-text="${food.fat}"></td>
+                <td data-th-text="${food.carbs}"></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

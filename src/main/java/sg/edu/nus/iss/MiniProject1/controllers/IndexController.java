@@ -1,20 +1,35 @@
 package sg.edu.nus.iss.MiniProject1.controllers;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import sg.edu.nus.iss.MiniProject1.models.Food;
+import sg.edu.nus.iss.MiniProject1.services.FoodService;
 
 @Controller
 @RequestMapping(path = "/home")
 public class IndexController {
 
-    @PostMapping
-    public String postUser(@RequestBody MultiValueMap<String,String> form, Model model) {
-        String username = form.getFirst("name");
-        model.addAttribute("displayName", username);
+    @Autowired
+    private FoodService foodSvc;
+
+    // index.html performs GetMapping for Username input
+    // Directed to localhost:8080/home?user={user}
+    @GetMapping
+    public String getUser(@RequestParam("user") String user, Model model) {
+        List<Food> foodArchive = foodSvc.retrieveArchive(user);
+        model.addAttribute("displayName", user);
+        model.addAttribute("foodArchive", foodArchive);
         return "home";
     } 
 }

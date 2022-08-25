@@ -16,6 +16,7 @@ public class FoodRepository {
     private RedisTemplate<String,String> redisTemplate;
 
     // Saving data input under user's name
+    // Payload will be in the form of JsonObjects(Food) {id,title,image...} May want to include date and time
     public void save(String name, String payload) {
         ValueOperations<String,String> valueOp = redisTemplate.opsForValue();
         // Setting Key:name, Value:Payload in redis
@@ -27,8 +28,10 @@ public class FoodRepository {
         ValueOperations<String,String> valueOp = redisTemplate.opsForValue();
         String username = valueOp.get(name.toLowerCase());
         if (null == username) {
+            // Return empty box if user does not exist
             return Optional.empty();
         } 
+        // Return user's box
         return Optional.of(username);
     }
 }

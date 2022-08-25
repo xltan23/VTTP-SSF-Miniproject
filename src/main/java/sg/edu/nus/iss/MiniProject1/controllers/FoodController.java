@@ -20,7 +20,9 @@ public class FoodController {
     @Autowired
     private FoodService foodSvc;
 
-    @PostMapping(value = "/options", consumes="application/x-www-form-urlencoded", produces="text/html")
+    // Post method to post data from home.html to retrieve Food List
+    // Display in food.html (localhost:8080/food/options)
+    @PostMapping(consumes="application/x-www-form-urlencoded", produces="text/html")
     public String getFood(@RequestBody MultiValueMap<String,String> form, Model model) {
         String name = form.getFirst("name");
         String minCalories = form.getFirst("minCalories");
@@ -29,15 +31,32 @@ public class FoodController {
         String maxFat = form.getFirst("maxFat");
         // Get new food list
         List<Food> foodList = foodSvc.getFood(minCalories, minCarbs, minProtein, maxFat);
-        // Retrieve list of food for the user from repository
-        // List<Food> foodArchive = foodSvc.retrieveArchive(name);
-        // foodArchive.addAll(foodList);
-        foodSvc.save(name, foodList);
         model.addAttribute("displayName", name);
         model.addAttribute("foodList", foodList);
         return "food";
     }
 
-    
+    // Saving food choices from food.html
+    @PostMapping(value = "/save", consumes="application/x-www-form-urlencoded", produces="text/html")
+    public String saveFood(@RequestBody MultiValueMap<String,String> form, Model model) {
+        // Set the user to be saved under
+        String user = form.getFirst("name");
+
+        Food food = new Food();
+        food.setId(Integer.parseInt(form.getFirst("id")));
+        food.setTitle(form.getFirst("title"));
+        food.setImage(form.getFirst("image"));
+        food.setImageType(form.getFirst("imageType"));
+        food.setCalories(Integer.parseInt(form.getFirst("calories")));
+        food.setProtein(form.getFirst("protein"));
+        food.setFat(form.getFirst("fat"));
+        food.setCarbs(form.getFirst("carbs"));
+
+        // Saving food to repository
+        foodSvc.save(user, food);
+        return "redirect:/";
+    }
+
+
 
 }

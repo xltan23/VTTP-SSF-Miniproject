@@ -32,11 +32,10 @@ public class FoodService {
     @Autowired
     private FoodRepository foodRepo;
 
-    // Edit the retrieve
     public List<Food> retrieveArchive(String name) {
-        Optional<String> opt = foodRepo.get(name);
+        Optional<String> opt = foodRepo.get(name.toLowerCase());
         String payload;
-        System.out.printf(">>> Retrieving data for %s\n", name);
+        System.out.printf(">>> Retrieving data for %s\n", name.toLowerCase());
 
         if (opt.isEmpty()) {
             return Collections.emptyList();
@@ -48,7 +47,7 @@ public class FoodService {
         JsonReader jr = Json.createReader(sr);
         JsonArray archive = jr.readArray();
         List<Food> archiveList = new LinkedList<>();
-        for (int i = 0; i < archiveList.size(); i++) {
+        for (int i = 0; i < archive.size(); i++) {
             JsonObject food = archive.getJsonObject(i);
             archiveList.add(Food.create(food));
         }
@@ -98,14 +97,35 @@ public class FoodService {
         return foodList;
     }
 
-    public void save(String name, List<Food> foodList) {
-        JsonArray jaFood = Json.createArrayBuilder().build();
-        for (int i = 0; i < foodList.size(); i++) {
-            Food food = foodList.get(i);
-            JsonObject joFood = food.toJson();
-            jaFood.add(joFood);
+    public void save(String name, Food saveFood) {
+        Optional<String> opt = foodRepo.get(name.toLowerCase());
+        List<Food> foodList = new LinkedList<>();
+        String payload;
+        if (!opt.isEmpty()) {
+            payload = opt.get();
+            System.out.printf(">>> Cache: %s\n", payload);
+            StringReader sr = new StringReader(payload);
+            JsonReader jr = Json.createReader(sr);
+            JsonArray foodArchive = jr.readArray();
+            // List<Food> archiveList = new LinkedList<>();
+            for (int i = 0; i < foodArchive.size(); i++) {
+                JsonObject food = foodArchive.getJsonObject(i);
+                foodList.add(Food.create(food));
+            }
+        } else {
+
         }
-        String payload = jaFood.toString();
-        foodRepo.save(name, payload);
+        foodList.add(saveFood);
+        // Create empty JsonArray
+        JsonArray jaFood = Json.createArrayBuilder()
+            .add(foodList.get(0).toJson())
+            .build();
+        // for (int i = 0; i < foodList.size(); i++) {
+        //     Food food = foodList.get(i);
+        //     JsonObject joFood = food.toJson();
+        // }
+        String newPayload = jaFood.toString(); 
+
+        foodRepo.save(name, newPayload);
     }
 }
