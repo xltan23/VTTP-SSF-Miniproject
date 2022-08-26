@@ -116,16 +116,145 @@ public class FoodService {
 
         }
         foodList.add(saveFood);
-        // Create empty JsonArray
-        JsonArray jaFood = Json.createArrayBuilder()
-            .add(foodList.get(0).toJson())
-            .build();
+
+        // Attempt to loop over list to form JsonArray
+        // List<String> stringList = new LinkedList<>();
         // for (int i = 0; i < foodList.size(); i++) {
-        //     Food food = foodList.get(i);
-        //     JsonObject joFood = food.toJson();
+        //     String foodString = foodList.get(i).toJson().toString();
+        //     stringList.add(foodString);
         // }
-        String newPayload = jaFood.toString(); 
+        // ObjectMapper mapper = new ObjectMapper();
+        // String newPayload = "";
+        // try {
+        //     newPayload = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(stringList);
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+        
+
+        // Simple test to obtain basic result
+        // JsonArray jaFood = Json.createArrayBuilder()
+        //     .add(foodList.get(0).toJson())
+        //     .build();
+
+        // String newPayload = jaFood.toString(); 
+
+        String newPayload = listToJson(foodList);
 
         foodRepo.save(name, newPayload);
+    }
+
+    // Manually create cases for food list size up to 10
+    private String listToJson(List<Food> foodList) {
+        int size = foodList.size();
+        String newPayload = "";
+        switch(size) {
+            case 1:
+                JsonArray jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+            case 2:
+                jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .add(foodList.get(1).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+            case 3:
+                jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .add(foodList.get(1).toJson())
+                    .add(foodList.get(2).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+            case 4:
+                jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .add(foodList.get(1).toJson())
+                    .add(foodList.get(2).toJson())
+                    .add(foodList.get(3).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+            case 5:
+                jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .add(foodList.get(1).toJson())
+                    .add(foodList.get(2).toJson())
+                    .add(foodList.get(3).toJson())
+                    .add(foodList.get(4).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+            case 6:
+                jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .add(foodList.get(1).toJson())
+                    .add(foodList.get(2).toJson())
+                    .add(foodList.get(3).toJson())
+                    .add(foodList.get(4).toJson())
+                    .add(foodList.get(5).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+            case 7:
+                jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .add(foodList.get(1).toJson())
+                    .add(foodList.get(2).toJson())
+                    .add(foodList.get(3).toJson())
+                    .add(foodList.get(4).toJson())
+                    .add(foodList.get(5).toJson())
+                    .add(foodList.get(6).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+            case 8:
+                jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .add(foodList.get(1).toJson())
+                    .add(foodList.get(2).toJson())
+                    .add(foodList.get(3).toJson())
+                    .add(foodList.get(4).toJson())
+                    .add(foodList.get(5).toJson())
+                    .add(foodList.get(6).toJson())
+                    .add(foodList.get(7).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+            case 9:
+                jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .add(foodList.get(1).toJson())
+                    .add(foodList.get(2).toJson())
+                    .add(foodList.get(3).toJson())
+                    .add(foodList.get(4).toJson())
+                    .add(foodList.get(5).toJson())
+                    .add(foodList.get(6).toJson())
+                    .add(foodList.get(7).toJson())
+                    .add(foodList.get(8).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+            case 10:
+                jaFood = Json.createArrayBuilder()
+                    .add(foodList.get(0).toJson())
+                    .add(foodList.get(1).toJson())
+                    .add(foodList.get(2).toJson())
+                    .add(foodList.get(3).toJson())
+                    .add(foodList.get(4).toJson())
+                    .add(foodList.get(5).toJson())
+                    .add(foodList.get(6).toJson())
+                    .add(foodList.get(7).toJson())
+                    .add(foodList.get(8).toJson())
+                    .add(foodList.get(9).toJson())
+                    .build();
+                newPayload = jaFood.toString();
+                break;
+        }
+        return newPayload;
     }
 }

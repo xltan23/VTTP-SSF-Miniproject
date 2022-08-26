@@ -54,7 +54,9 @@ public class FoodController {
 
         // Saving food to repository
         foodSvc.save(user, food);
-        return "redirect:/";
+
+        String userTrim = user.replaceAll(" ", "+");
+        return "redirect:/home?user=%s".formatted(userTrim);
     }
 
 
