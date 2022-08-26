@@ -43,6 +43,7 @@ public class FoodController {
         String user = form.getFirst("name");
 
         Food food = new Food();
+        food.setTime(form.getFirst("time"));
         food.setId(Integer.parseInt(form.getFirst("id")));
         food.setTitle(form.getFirst("title"));
         food.setImage(form.getFirst("image"));
@@ -55,6 +56,7 @@ public class FoodController {
         // Saving food to repository
         foodSvc.save(user, food);
 
+        // Trim the name such that spaces become + (Cristiano Ronaldo => Cristiano+Ronaldo)
         String userTrim = user.replaceAll(" ", "+");
         return "redirect:/home?user=%s".formatted(userTrim);
     }

@@ -15,6 +15,7 @@
                     <h5>ID: <span data-th-text="${food.id}"></span></h5>
                     <h3 data-th-text="${food.title}"></h3>
                     <p>
+                        <h6 data-th-text="${food.time}"></h6>
                         <h6 data-th-text="${food.image}"></h6>
                         <h6 data-th-text="${food.imageType}"></h6>
                         <h6 data-th-text="${food.calories}"></h6>
@@ -23,6 +24,7 @@
                         <h6 data-th-text="${food.carbs}"></h6> 
                     </p>
                     <input type="hidden" name="name" data-th-value="${displayName}">
+                    <input type="hidden" name="time" data-th-value="${food.time}">
                     <input type="hidden" name="id" data-th-value="${food.id}">
                     <input type="hidden" name="title" data-th-value="${food.title}">
                     <input type="hidden" name="image" data-th-value="${food.image}">

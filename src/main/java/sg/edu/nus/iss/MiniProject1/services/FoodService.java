@@ -49,7 +49,7 @@ public class FoodService {
         List<Food> archiveList = new LinkedList<>();
         for (int i = 0; i < archive.size(); i++) {
             JsonObject food = archive.getJsonObject(i);
-            archiveList.add(Food.create(food));
+            archiveList.add(Food.createR(food));
         }
         return archiveList;
     }
@@ -110,35 +110,13 @@ public class FoodService {
             // List<Food> archiveList = new LinkedList<>();
             for (int i = 0; i < foodArchive.size(); i++) {
                 JsonObject food = foodArchive.getJsonObject(i);
-                foodList.add(Food.create(food));
+                foodList.add(Food.createR(food));
             }
         } else {
 
         }
         foodList.add(saveFood);
-
-        // Attempt to loop over list to form JsonArray
-        // List<String> stringList = new LinkedList<>();
-        // for (int i = 0; i < foodList.size(); i++) {
-        //     String foodString = foodList.get(i).toJson().toString();
-        //     stringList.add(foodString);
-        // }
-        // ObjectMapper mapper = new ObjectMapper();
-        // String newPayload = "";
-        // try {
-        //     newPayload = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(stringList);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-        
-
-        // Simple test to obtain basic result
-        // JsonArray jaFood = Json.createArrayBuilder()
-        //     .add(foodList.get(0).toJson())
-        //     .build();
-
-        // String newPayload = jaFood.toString(); 
-
+        // Converting list into JsonArray and into JsonString
         String newPayload = listToJson(foodList);
 
         foodRepo.save(name, newPayload);
