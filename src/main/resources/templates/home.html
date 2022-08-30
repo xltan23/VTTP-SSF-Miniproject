@@ -3,46 +3,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>Home Page</title>
 </head>
 <body>
-    <h1>Welcome <span data-th-text="${displayName}"></span></h1>
-    <form action="/food" method="POST">
-        <input type="hidden" name="name" data-th-value="${displayName}">
-        <div>
-            <label for="minCalories">Minimum Calories:</label>
-            <input type="text" name="minCalories">
-        </div>
-        <div>
-            <label for="minCarbs">Minimum Carbohydrates</label>
-            <input type="text" name="minCarbs">
-        </div>
-        <div>
-            <label for="minProtein">Minimum Protein</label>
-            <input type="text" name="minProtein">
-        </div>
-        <div>
-            <label for="maxFat">Maximum Fats</label>
-            <input type="text" name="maxFat">
-        </div>
-        <div>
-            <input type="submit" value="GO!">
-        </div>        
-    </form>
-
+    <h1>Welcome <span data-th-text="${username}"></span></h1>
+    
     <div>
-        <h1>Food Archive</h1>
         <table>
-            <tr data-th-each="food : ${foodArchive}">
-                <td data-th-text="${food.time}"></td>
-                <td data-th-text="${food.id}"></td>
-                <td data-th-text="${food.title}"></td>
-                <td data-th-text="${food.image}"></td>
-                <td data-th-text="${food.imageType}"></td>
-                <td data-th-text="${food.calories}"></td>
-                <td data-th-text="${food.protein}"></td>
-                <td data-th-text="${food.fat}"></td>
-                <td data-th-text="${food.carbs}"></td>
+            <tr>
+                <td>
+                    <h3>Workout Archive</h3>
+                </td>
+                <td>
+                    <h3>Food Archive</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Name of Workout</td>
+                            <td>Data & Time</td>
+                            <td>Total Intensity</td>
+                            <td>Calories Burnt</td>
+                            <td>Recommended Protein Intake</td>
+                            <td>Recommended Carbs Intake</td>
+                        </tr>
+                        <tr data-th-each="archive:${archiveList}">
+                            <td data-th-text="${archive.name}"></td>
+                            <td data-th-text="${archive.time}"></td>
+                            <td data-th-text="${archive.totalIntensity}"></td>
+                            <td data-th-text="${archive.caloriesBurnt}"></td>
+                            <td data-th-text="${archive.recProtein}"></td>
+                            <td data-th-text="${archive.recCarbs}"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Time</td>
+                            <td>ID</td>
+                            <td>Title</td>
+                            <td>Image URL</td>
+                            <td>Image Type</td>
+                            <td>Calories</td>
+                            <td>Protein</td>
+                            <td>Fat</td>
+                            <td>Carbs</td>
+                        </tr>
+                        <tr data-th-each="food:${foodList}">
+                            <td data-th-text="${food.time}"></td>
+                            <td data-th-text="${food.id}"></td>
+                            <td data-th-text="${food.title}"></td>
+                            <td data-th-text="${food.image}"></td>
+                            <td data-th-text="${food.imageType}"></td>
+                            <td data-th-text="${food.calories}"></td>
+                            <td data-th-text="${food.protein}"></td>
+                            <td data-th-text="${food.fat}"></td>
+                            <td data-th-text="${food.carbs}"></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
         </table>
     </div>

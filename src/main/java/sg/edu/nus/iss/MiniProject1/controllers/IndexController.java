@@ -24,16 +24,16 @@ public class IndexController {
     @Autowired
     private WorkoutSumService workSumSvc;
 
-    // Receives username from index page (localhost:8080)
-    // Map to home page (localhost:8080/home?user={user}) 
+    // Receives username from index page (localhost:8080) [index.html]
+    // Map to home page (localhost:8080/home?user={user}) [home.html]
     @GetMapping
     public String getUser(@RequestParam("user") String user, Model model) {
         // Retrieve workout and food archive list
         List<WorkoutSummary> archiveList = workSumSvc.retrieveArchive(user);
         List<Food> foodList = foodSvc.retrieveFood(user);
-        model.addAttribute("displayName", user.toUpperCase());
+        model.addAttribute("username", user.toUpperCase());
         model.addAttribute("archiveList", archiveList);
-        model.addAttribute("foodArchive", foodList);
+        model.addAttribute("foodList", foodList);
         return "home";
     } 
 }

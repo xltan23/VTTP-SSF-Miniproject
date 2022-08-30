@@ -3,40 +3,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food List</title>
+    <title>Food Page</title>
 </head>
 <body>
-    <h1><span data-th-text="${displayName}"></span>, Your food choices!</h1>
-    <table>
-        <tr data-th-each="food : ${foodList}">
-
-            <form action="/food/save" method="POST">
-                <div>
-                    <h5>ID: <span data-th-text="${food.id}"></span></h5>
-                    <h3 data-th-text="${food.title}"></h3>
-                    <p>
-                        <h6 data-th-text="${food.time}"></h6>
-                        <h6 data-th-text="${food.image}"></h6>
-                        <h6 data-th-text="${food.imageType}"></h6>
-                        <h6 data-th-text="${food.calories}"></h6>
-                        <h6 data-th-text="${food.protein}"></h6>
-                        <h6 data-th-text="${food.fat}"></h6>
-                        <h6 data-th-text="${food.carbs}"></h6> 
-                    </p>
-                    <input type="hidden" name="name" data-th-value="${displayName}">
-                    <input type="hidden" name="time" data-th-value="${food.time}">
-                    <input type="hidden" name="id" data-th-value="${food.id}">
-                    <input type="hidden" name="title" data-th-value="${food.title}">
-                    <input type="hidden" name="image" data-th-value="${food.image}">
-                    <input type="hidden" name="imageType" data-th-value="${food.imageType}">
-                    <input type="hidden" name="calories" data-th-value="${food.calories}">
-                    <input type="hidden" name="protein" data-th-value="${food.protein}">
-                    <input type="hidden" name="fat" data-th-value="${food.fat}">
-                    <input type="hidden" name="carbs" data-th-value="${food.carbs}">
-                    <input type="submit" value="Save">
-                </div>
-            </form>
-        </tr>
-    </table>
+    <form action="/food/options" method="POST">
+        <input type="hidden" name="user" data-th-value="${username}">
+        <div>
+            <label for="minCalories">Minimum Calories:</label>
+            <input type="text" name="minCalories">
+        </div>
+        <div>
+            <label for="minCarbs">Minimum Carbohydrates</label>
+            <input type="text" name="minCarbs">
+        </div>
+        <div>
+            <label for="minProtein">Minimum Protein</label>
+            <input type="text" name="minProtein">
+        </div>
+        <div>
+            <label for="maxFat">Maximum Fats</label>
+            <input type="text" name="maxFat">
+        </div>
+        <div>
+            <input type="submit" value="GO!">
+        </div>        
+    </form>
 </body>
 </html>

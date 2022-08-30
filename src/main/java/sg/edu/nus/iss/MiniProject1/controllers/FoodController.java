@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,27 +22,41 @@ public class FoodController {
     @Autowired
     private FoodService foodSvc;
 
-    // Post method to post data from home.html to retrieve Food List
-    // Display in food.html (localhost:8080/food/options)
-    @PostMapping(consumes="application/x-www-form-urlencoded", produces="text/html")
+    // Link to access user's food page (localhost:8080/food/{user}) [food.html]
+    @GetMapping("{user}")
+    public String getUserFood(
+        @PathVariable(name = "user", required = true) String user,
+        Model model) {
+            List<Food> foodList = foodSvc.retrieveFood(user);
+            model.addAttribute("username", user);
+            model.addAttribute("foodList", foodList);
+            return "food";
+    }
+
+    // Form info post to (localhost:8080/food/options) to retrieve data from spoontacular
+    // Display outcome in (localhost:8080/food/options) [foodDisplay.html]
+    @PostMapping(value = "/options", consumes="application/x-www-form-urlencoded", produces="text/html")
     public String getFood(@RequestBody MultiValueMap<String,String> form, Model model) {
-        String name = form.getFirst("name");
+        String user = form.getFirst("user");
+
         String minCalories = form.getFirst("minCalories");
         String minCarbs = form.getFirst("minCarbs");
         String minProtein = form.getFirst("minProtein");
         String maxFat = form.getFirst("maxFat");
-        // Get new food list
+        // Get food list from spoontacular
         List<Food> foodList = foodSvc.getFood(minCalories, minCarbs, minProtein, maxFat);
-        model.addAttribute("displayName", name);
+        model.addAttribute("username", user);
         model.addAttribute("foodList", foodList);
-        return "food";
+        return "foodDisplay";
     }
 
-    // Saving food choices from food.html
+    // Form info post to (localhost:8080/food/save)
+    // Save food to food list
+    // Return to (localhost:8080/food/{user}) 
     @PostMapping(value = "/save", consumes="application/x-www-form-urlencoded", produces="text/html")
     public String saveFood(@RequestBody MultiValueMap<String,String> form, Model model) {
         // Set the user to be saved under
-        String user = form.getFirst("name");
+        String user = form.getFirst("user");
 
         Food food = new Food();
         food.setTime(form.getFirst("time"));
@@ -56,11 +72,7 @@ public class FoodController {
         // Saving food to repository
         foodSvc.save(user, food);
 
-        // Trim the name such that spaces become + (Cristiano Ronaldo => Cristiano+Ronaldo)
-        String userTrim = user.replaceAll(" ", "+");
-        return "redirect:/home?user=%s".formatted(userTrim);
+        String userTrim = user.replaceAll(" ", "%20");
+        return "redirect:/food/%s".formatted(userTrim);
     }
-
-
-
 }
