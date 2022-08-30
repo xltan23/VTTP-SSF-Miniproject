@@ -36,7 +36,7 @@ public class WorkoutController {
         Model model) {
             List<Workout> workoutList = workSvc.retrieveWorkout(user);
             List<String> staticWorkout = workSvc.getStatics();
-            model.addAttribute("displayName", user.toUpperCase());
+            model.addAttribute("username", user.toUpperCase());
             model.addAttribute("workoutList", workoutList);
             model.addAttribute("staticWorkout", staticWorkout);
             return "workout";
@@ -50,7 +50,7 @@ public class WorkoutController {
         String user = form.getFirst("user");
 
         Workout workout = new Workout();
-        workout.setName(form.getFirst("name"));
+        workout.setName(form.getFirst("staticName"));
         Integer duration = Integer.parseInt(form.getFirst("duration"));
         Integer sets = Integer.parseInt(form.getFirst("sets"));
         workout.setDuration(duration);
@@ -115,7 +115,7 @@ public class WorkoutController {
         // Save workout summary to archive list in Redis
         workSumSvc.save(user, ws);
 
-        model.addAttribute("displayName", user);
+        model.addAttribute("username", user);
         model.addAttribute("workoutList", workoutList);
         model.addAttribute("workoutSummary", ws);
         return "summary";

@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Summary</title>
+</head>
+<body>
+    <div data-th-each="workout:${workoutList}">
+        <span data-th-text="${workout.name}"></span>
+        <span data-th-text="${workout.duration}"></span>
+        <span data-th-text="${workout.repetition}"></span>
+        <span data-th-text="${workout.sets}"></span>
+        <span data-th-text="${workout.intensity}"></span>
+    </div>
+
+    <div>
+        <span data-th-text="${workoutSummary.name}"></span>
+        <span data-th-text="${workoutSummary.time}"></span>
+        <span data-th-text="${workoutSummary.totalIntensity}"></span>
+        <span data-th-text="${workoutSummary.caloriesBurnt}"></span>
+        <span data-th-text="${workoutSummary.recProtein}"></span>
+        <span data-th-text="${workoutSummary.recCarbs}"></span>
+    </div>
+</body>
+</html>

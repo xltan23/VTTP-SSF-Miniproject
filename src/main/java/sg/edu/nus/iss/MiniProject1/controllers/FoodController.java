@@ -33,7 +33,7 @@ public class FoodController {
             return "food";
     }
 
-    // Form info post to (localhost:8080/food/options) to retrieve data from spoontacular
+    // Form info post to (localhost:8080/food/options) to retrieve data from spoonacular
     // Display outcome in (localhost:8080/food/options) [foodDisplay.html]
     @PostMapping(value = "/options", consumes="application/x-www-form-urlencoded", produces="text/html")
     public String getFood(@RequestBody MultiValueMap<String,String> form, Model model) {
@@ -47,7 +47,7 @@ public class FoodController {
         List<Food> foodList = foodSvc.getFood(minCalories, minCarbs, minProtein, maxFat);
         model.addAttribute("username", user);
         model.addAttribute("foodList", foodList);
-        return "foodDisplay";
+        return "spoonacular";
     }
 
     // Form info post to (localhost:8080/food/save)
