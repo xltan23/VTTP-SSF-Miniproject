@@ -7,128 +7,73 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
-import sg.edu.nus.iss.MiniProject1.models.Food;
-import sg.edu.nus.iss.MiniProject1.repositories.FoodRepository;
+import sg.edu.nus.iss.MiniProject1.models.Workout;
+import sg.edu.nus.iss.MiniProject1.repositories.WorkoutRepository;
 
 @Service
-public class FoodService {
+public class WorkoutService {
     
-    // Setting base link
-    private static final String URL = "https://api.spoonacular.com/recipes/findByNutrients";
-
-    // API key for Spoontacular
-    @Value("${API_KEY}")
-    private String key;
-
     @Autowired
-    private FoodRepository foodRepo;
+    private WorkoutRepository workoutRepo;
 
-    // Retrieve full food archive from Redis
-    public List<Food> retrieveFood(String name) {
-        Optional<String> opt = foodRepo.get(name);
+    // Retrieve temporary workout list from session
+    public List<Workout> retrieveWorkout(String name) {
+        Optional<String> opt = workoutRepo.get(name);
         String payload;
-        System.out.printf(">>> Retrieving food archive for %s\n", name.toLowerCase());
+        System.out.printf(">>> Retrieving session data for %s\n", name.toLowerCase());
 
         if (opt.isEmpty()) {
             return Collections.emptyList();
         } else {
             payload = opt.get();
-            System.out.printf(">>> Food archive: %s\n", payload);
+            System.out.printf(">>> Session workout: %s\n", payload);
         }
 
         StringReader sr = new StringReader(payload);
         JsonReader jr = Json.createReader(sr);
-        JsonArray foodArray = jr.readArray();
-        List<Food> foodList = new LinkedList<>();
-        for (int i = 0; i < foodArray.size(); i++) {
-            JsonObject food = foodArray.getJsonObject(i);
-            foodList.add(Food.createFR(food));
+        JsonArray workoutSess = jr.readArray();
+        List<Workout> workoutList = new LinkedList<>();
+        for (int i = 0; i < workoutSess.size() ;i++) {
+            JsonObject workout = workoutSess.getJsonObject(i);
+            workoutList.add(Workout.createW(workout));
         }
-        return foodList;
+        return workoutList;
     }
 
-    public List<Food> getFood(String minCalories, String minCarbs, String minProtein, String maxFat) {
-        String payload;
-
-        try {
-            System.out.println("Obtaining food by nutrients from Spoonacular");
-
-            String url = UriComponentsBuilder.fromUriString(URL)
-                .queryParam("minCalories", minCalories)
-                .queryParam("minCarbs", minCarbs)
-                .queryParam("minProtein", minProtein)
-                .queryParam("maxFat", maxFat)
-                .queryParam("apiKey", key)
-                .toUriString();
-
-            // Create GET request 
-            RequestEntity<Void> req = RequestEntity.get(url).build();
-
-            // Make the call to Spoonacular
-            RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> resp;
-            resp = restTemplate.exchange(req, String.class);
-            // Get Response in terms of JsonString
-            payload = resp.getBody();
-            System.out.printf("Payload: %s", payload);
-
-        } catch (Exception ex) {
-            System.err.printf("Error: %s\n", ex.getMessage());
-            return Collections.emptyList();
-        }
-        // Convert payload to Json Object
-        StringReader sr = new StringReader(payload);
-        JsonReader jr = Json.createReader(sr);
-        JsonArray foodResult = jr.readArray();
-        List<Food> foodList = new LinkedList<>();
-        for (int i = 0; i < foodResult.size(); i++) {
-            JsonObject foodItem = foodResult.getJsonObject(i);
-            // Upon creation: Date and Time set
-            foodList.add(Food.createF(foodItem));
-        }
-        return foodList;
-    }
-
-    // Saving food in food archive in Redis
-    public void save(String name, Food newFood) {
-        // Retrieve food archive
-        Optional<String> opt = foodRepo.get(name);
-        List<Food> foodList = new LinkedList<>();
+    // Saving workout in temporary list for session
+    public void save(String name, Workout newWorkout) {
+        // Retrieve temporary workout list
+        Optional<String> opt = workoutRepo.get(name);
+        List<Workout> workoutList = new LinkedList<>();
         String payload;
         if (!opt.isEmpty()) {
-            // If user's records exist, fill foodList
+            // If user's session exist, fill the workout list
             payload = opt.get();
-            System.out.println(">>> Retrieving all food archive...\n");
+            System.out.println(">>> Retrieving session data...\n");
             StringReader sr = new StringReader(payload);
             JsonReader jr = Json.createReader(sr);
-            JsonArray foodArray = jr.readArray();
-            for (int i = 0; i < foodArray.size(); i++) {
-                JsonObject food = foodArray.getJsonObject(i);
-                foodList.add(Food.createFR(food));
+            JsonArray workoutSess = jr.readArray();
+            for (int i = 0; i < workoutSess.size(); i++) {
+                JsonObject workout = workoutSess.getJsonObject(i);
+                workoutList.add(Workout.createW(workout));
             }
         } else {
-            // If user's records absent (i.e. new user), start with empty food list
+            // If user's session is new, start with empty workout list
         }
-        foodList.add(newFood);
-        // Converting list into JsonArray and into JsonString
-        String newPayload = listToJson(foodList);
-        System.out.printf(">>> Saving new food archive: %s\n", newPayload);
-        foodRepo.save(name, newPayload);
+        workoutList.add(newWorkout);
+        String newPayload = listToJson(workoutList);
+        System.out.printf(">>> Saving new session data: %s\n", newPayload);
+        workoutRepo.save(name, newPayload);
     }
 
     // List to JsonArray method that supports up to 10 entries
-    private String listToJson(List<Food> list) {
+    private String listToJson(List<Workout> list) {
         int size = list.size();
         String newPayload = "";
         switch(size) {
@@ -239,5 +184,46 @@ public class FoodService {
                 break;
         }
         return newPayload;
+    }
+
+    // Time intensity converter (To be tested and verified)
+    public Integer timeIntensityConversion(Integer duration, Integer sets) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (duration <= 45) {
+            in = duration*sets*0.7;
+        } else if (duration > 45 && duration <= 90) {
+            in = duration*sets;
+        } else {
+            in = duration*sets*1.3;
+        }
+        Integer intensity = (int)in;
+        return intensity;
+    }
+
+    // Repetition intensity converter (To be tested and verified)
+    public Integer repIntensityConversion(Integer repetition, Integer sets) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (repetition <= 20) {
+            in = repetition*sets*0.7;
+        } else if (repetition > 20 && repetition <= 40) {
+            in = repetition*sets;
+        } else {
+            in = repetition*sets*1.3;
+        }
+        Integer intensity = (int)in;
+        return intensity;
+    }
+
+    // Create list of static workouts (Duration-based)
+    public List<String> getStatics() {
+        List<String> staticWorkout = new LinkedList<>();
+        staticWorkout.add("PLANK");
+        staticWorkout.add("SIDE PLANK");
+        staticWorkout.add("LEG RAISE");
+        staticWorkout.add("V-MAN");
+        staticWorkout.add("PUSH-UP HOLD");
+        return staticWorkout;
     }
 }

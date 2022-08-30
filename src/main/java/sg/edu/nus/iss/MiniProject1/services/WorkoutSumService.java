@@ -7,128 +7,74 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
-import sg.edu.nus.iss.MiniProject1.models.Food;
-import sg.edu.nus.iss.MiniProject1.repositories.FoodRepository;
+import sg.edu.nus.iss.MiniProject1.models.Workout;
+import sg.edu.nus.iss.MiniProject1.models.WorkoutSummary;
+import sg.edu.nus.iss.MiniProject1.repositories.WorkoutSumRepository;
 
 @Service
-public class FoodService {
-    
-    // Setting base link
-    private static final String URL = "https://api.spoonacular.com/recipes/findByNutrients";
-
-    // API key for Spoontacular
-    @Value("${API_KEY}")
-    private String key;
+public class WorkoutSumService {
 
     @Autowired
-    private FoodRepository foodRepo;
+    private WorkoutSumRepository workSumRepo;
 
-    // Retrieve full food archive from Redis
-    public List<Food> retrieveFood(String name) {
-        Optional<String> opt = foodRepo.get(name);
+    // Retrieve full workout archive from Redis
+    public List<WorkoutSummary> retrieveArchive(String name) {
+        Optional<String> opt = workSumRepo.get(name);
         String payload;
-        System.out.printf(">>> Retrieving food archive for %s\n", name.toLowerCase());
+        System.out.printf(">>> Retrieving archive for %s\n", name.toLowerCase());
 
         if (opt.isEmpty()) {
             return Collections.emptyList();
         } else {
             payload = opt.get();
-            System.out.printf(">>> Food archive: %s\n", payload);
+            System.out.printf(">>> All workout summary: %s\n", payload);
         }
 
         StringReader sr = new StringReader(payload);
         JsonReader jr = Json.createReader(sr);
-        JsonArray foodArray = jr.readArray();
-        List<Food> foodList = new LinkedList<>();
-        for (int i = 0; i < foodArray.size(); i++) {
-            JsonObject food = foodArray.getJsonObject(i);
-            foodList.add(Food.createFR(food));
-        }
-        return foodList;
+        JsonArray archiveArray = jr.readArray();
+        List<WorkoutSummary> archiveList = new LinkedList<>();
+        for (int i = 0; i < archiveArray.size(); i++) {
+            JsonObject archive = archiveArray.getJsonObject(i);
+            archiveList.add(WorkoutSummary.createWS(archive));
+        } 
+        return archiveList;
     }
 
-    public List<Food> getFood(String minCalories, String minCarbs, String minProtein, String maxFat) {
-        String payload;
-
-        try {
-            System.out.println("Obtaining food by nutrients from Spoonacular");
-
-            String url = UriComponentsBuilder.fromUriString(URL)
-                .queryParam("minCalories", minCalories)
-                .queryParam("minCarbs", minCarbs)
-                .queryParam("minProtein", minProtein)
-                .queryParam("maxFat", maxFat)
-                .queryParam("apiKey", key)
-                .toUriString();
-
-            // Create GET request 
-            RequestEntity<Void> req = RequestEntity.get(url).build();
-
-            // Make the call to Spoonacular
-            RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> resp;
-            resp = restTemplate.exchange(req, String.class);
-            // Get Response in terms of JsonString
-            payload = resp.getBody();
-            System.out.printf("Payload: %s", payload);
-
-        } catch (Exception ex) {
-            System.err.printf("Error: %s\n", ex.getMessage());
-            return Collections.emptyList();
-        }
-        // Convert payload to Json Object
-        StringReader sr = new StringReader(payload);
-        JsonReader jr = Json.createReader(sr);
-        JsonArray foodResult = jr.readArray();
-        List<Food> foodList = new LinkedList<>();
-        for (int i = 0; i < foodResult.size(); i++) {
-            JsonObject foodItem = foodResult.getJsonObject(i);
-            // Upon creation: Date and Time set
-            foodList.add(Food.createF(foodItem));
-        }
-        return foodList;
-    }
-
-    // Saving food in food archive in Redis
-    public void save(String name, Food newFood) {
-        // Retrieve food archive
-        Optional<String> opt = foodRepo.get(name);
-        List<Food> foodList = new LinkedList<>();
+    // Saving workout summary in workout archive in Redis
+    public void save(String name, WorkoutSummary newSummary) {
+        // Retrieve workout archive
+        Optional<String> opt = workSumRepo.get(name);
+        List<WorkoutSummary> archiveList = new LinkedList<>();
         String payload;
         if (!opt.isEmpty()) {
-            // If user's records exist, fill foodList
+            // If user's records exist, fill archiveList
             payload = opt.get();
-            System.out.println(">>> Retrieving all food archive...\n");
+            System.out.println(">>> Retrieving all workout archive...\n");
             StringReader sr = new StringReader(payload);
             JsonReader jr = Json.createReader(sr);
-            JsonArray foodArray = jr.readArray();
-            for (int i = 0; i < foodArray.size(); i++) {
-                JsonObject food = foodArray.getJsonObject(i);
-                foodList.add(Food.createFR(food));
+            JsonArray archiveArray = jr.readArray();
+            for (int i = 0; i < archiveArray.size(); i++) {
+                JsonObject archive = archiveArray.getJsonObject(i);
+                archiveList.add(WorkoutSummary.createWS(archive));
             }
         } else {
-            // If user's records absent (i.e. new user), start with empty food list
+            // If user's records absent (i.e. new user), start with empty archive list
         }
-        foodList.add(newFood);
-        // Converting list into JsonArray and into JsonString
-        String newPayload = listToJson(foodList);
-        System.out.printf(">>> Saving new food archive: %s\n", newPayload);
-        foodRepo.save(name, newPayload);
+        archiveList.add(newSummary);
+        String newPayload = listToJson(archiveList);
+        System.out.printf(">>> Saving new workout archive: %s\n", newPayload);
+        workSumRepo.save(name, newPayload);
     }
 
     // List to JsonArray method that supports up to 10 entries
-    private String listToJson(List<Food> list) {
+    private String listToJson(List<WorkoutSummary> list) {
         int size = list.size();
         String newPayload = "";
         switch(size) {
@@ -239,5 +185,36 @@ public class FoodService {
                 break;
         }
         return newPayload;
+    }
+
+    // Calculator to sum up all intensity values in workout list
+    public Integer totalIntensityCalculator(List<Workout> workoutList) {
+        Integer totalIntensity = 0;
+        for (int i = 0; i < workoutList.size(); i++) {
+            Integer intensity = workoutList.get(i).getIntensity();
+            totalIntensity += intensity;
+        }
+        return totalIntensity;
+    }     
+
+    // Intensity to determine calories burnt (To be tested and verified)
+    public Integer caloriesBurntCalculator(Integer totalIntensity) {
+        double cb = totalIntensity/10;
+        Integer caloriesBurnt = (int)cb;
+        return caloriesBurnt;
+    }
+
+    // Intensity to determine protein recommended (To be tested and verified)
+    public Integer recProteinCalculator(Integer totalIntensity) {
+        double rp = totalIntensity/18;
+        Integer recProtein = (int)rp;
+        return recProtein;
+    }
+
+    // Intensity to determine carbs recommended (To be tested and verified)
+    public Integer recCarbsCalculator(Integer totalIntensity) {
+        double rc = totalIntensity/14;
+        Integer recCarbs = (int)rc;
+        return recCarbs;
     }
 }

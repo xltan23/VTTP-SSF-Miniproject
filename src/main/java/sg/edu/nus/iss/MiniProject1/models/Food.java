@@ -9,6 +9,7 @@ import jakarta.json.JsonReader;
 
 public class Food {
 
+    // Defining Food
     private String time;
     private Integer id;
     private String title;
@@ -74,7 +75,8 @@ public class Food {
         this.carbs = carbs;
     }
 
-    public static Food create(JsonObject jo) {
+    // Creating food from JsonObject (Setting the time at time of creation)
+    public static Food createF(JsonObject jo) {
         Food food = new Food();
         food.setTime((new Date()).toString());
         food.setId(jo.getInt("id"));
@@ -88,8 +90,8 @@ public class Food {
         return food;
     }
 
-    // Creation method to retain the time
-    public static Food createR(JsonObject jo) {
+    // Creating food from JsonObject (Retaining the time the object already has)
+    public static Food createFR(JsonObject jo) {
         Food food = new Food();
         food.setTime(jo.getString("time"));
         food.setId(jo.getInt("id"));
@@ -103,12 +105,14 @@ public class Food {
         return food;
     }
 
+    // Creating food from JsonString
     public static Food create(String jsonString) {
         StringReader sr = new StringReader(jsonString);
         JsonReader jr = Json.createReader(sr);
-        return create(jr.readObject());
+        return createF(jr.readObject());
     }
 
+    // Creating JsonObject from food 
     public JsonObject toJson() {
         return Json.createObjectBuilder()
                 .add("time", time)
@@ -122,5 +126,4 @@ public class Food {
                 .add("carbs", carbs)
                 .build();
     }
-
 }
