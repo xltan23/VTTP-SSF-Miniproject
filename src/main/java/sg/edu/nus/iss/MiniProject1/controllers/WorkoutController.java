@@ -29,65 +29,15 @@ public class WorkoutController {
     private WorkoutSumService workSumSvc;
 
     // Link to access user's workout page (localhost:8080/workout/{user})
-    // Screen display: Access and show temporary workout list | Available workouts to attempt
+    // Screen display: Access and show temporary workout list | Available types of workout to attempt
     @GetMapping("{user}") 
     public String getUserWorkout(
         @PathVariable(name = "user", required = true) String user,
         Model model) {
             List<Workout> workoutList = workSvc.retrieveWorkout(user);
-            List<String> staticWorkout = workSvc.getStatics();
             model.addAttribute("username", user.toUpperCase());
             model.addAttribute("workoutList", workoutList);
-            model.addAttribute("staticWorkout", staticWorkout);
             return "workout";
-    }
-
-    // Form info post to (localhost:8080/workout/savestatic)
-    // Save workout to temporary workout list 
-    // Return to (localhost:8080/workout/{user})
-    @PostMapping(value = "/savestatic", consumes = "application/x-www-form-urlencoded", produces = "text/html")
-    public String postStaticWorkout(@RequestBody MultiValueMap<String,String> form, Model model) {
-        String user = form.getFirst("user");
-
-        Workout workout = new Workout();
-        workout.setName(form.getFirst("staticName"));
-        Integer duration = Integer.parseInt(form.getFirst("duration"));
-        Integer sets = Integer.parseInt(form.getFirst("sets"));
-        workout.setDuration(duration);
-        workout.setRepetition(0);
-        workout.setSets(sets);
-        // Perform intensity conversion
-        workout.setIntensity(workSvc.timeIntensityConversion(duration, sets));
-
-        // Save workout to temporary workout list
-        workSvc.save(user, workout);
-
-        String userTrim = user.replaceAll(" ", "%20");
-        return "redirect:/workout/%s".formatted(userTrim);
-    }
-
-    // Form info post to (localhost:8080/workout/savedynamic)
-    // Save workout to temporary workout list 
-    // Return to (localhost:8080/workout/{user})
-    @PostMapping(value = "/savedynamic", consumes = "application/x-www-form-urlencoded", produces = "text/html")
-    public String postDynamicWorkout(@RequestBody MultiValueMap<String,String> form, Model model) {
-        String user = form.getFirst("user");
-
-        Workout workout = new Workout();
-        workout.setName(form.getFirst("name"));
-        Integer repetition = Integer.parseInt(form.getFirst("repetition"));
-        Integer sets = Integer.parseInt(form.getFirst("sets"));
-        workout.setDuration(0);
-        workout.setRepetition(repetition);
-        workout.setSets(sets);
-        // Perform intensity conversion
-        workout.setIntensity(workSvc.repIntensityConversion(repetition, sets));
-
-        // Save workout to temporary workout list
-        workSvc.save(user, workout);
-
-        String userTrim = user.replaceAll(" ", "%20");
-        return "redirect:/workout/%s".formatted(userTrim);
     }
 
     // Form info post to (localhost:8080/workout/summary)
@@ -104,6 +54,7 @@ public class WorkoutController {
         Integer recProtein = workSumSvc.recProteinCalculator(totalIntensity);
         Integer recCarbs = workSumSvc.recCarbsCalculator(totalIntensity);
 
+        // Create workout summary
         WorkoutSummary ws = new WorkoutSummary();
         ws.setName(form.getFirst("workoutName"));
         ws.setTime((new Date()).toString());

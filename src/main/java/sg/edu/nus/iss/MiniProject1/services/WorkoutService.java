@@ -186,8 +186,9 @@ public class WorkoutService {
         return newPayload;
     }
 
-    // Time intensity converter (To be tested and verified)
-    public Integer timeIntensityConversion(Integer duration, Integer sets) {
+    // Static Duration Workout
+    // Level 1 Time intensity converter (To be tested and verified)
+    public Integer timeIntensityConversion1(Integer duration, Integer sets) {
         // Mathematical operations in double format to allow multiplier
         double in = 0;
         if (duration <= 45) {
@@ -201,13 +202,71 @@ public class WorkoutService {
         return intensity;
     }
 
-    // Repetition intensity converter (To be tested and verified)
-    public Integer repIntensityConversion(Integer repetition, Integer sets) {
+    // Level 1 Static duration workouts 
+    public List<String> getStaticDuration1() {
+        List<String> staticWorkout = new LinkedList<>();
+        staticWorkout.add("PLANK");
+        staticWorkout.add("SIDE PLANK");
+        staticWorkout.add("LEG RAISE HOLD");
+        return staticWorkout;
+    }
+
+    // Level 2 Time intensity converter (To be tested and verified)
+    public Integer timeIntensityConversion2(Integer duration, Integer sets) {
         // Mathematical operations in double format to allow multiplier
         double in = 0;
-        if (repetition <= 20) {
+        if (duration <= 30) {
+            in = duration*sets*0.9;
+        } else if (duration > 30 && duration <= 60) {
+            in = duration*sets*1.3;
+        } else {
+            in = duration*sets*1.6;
+        }
+        Integer intensity = (int)in;
+        return intensity;
+    }
+
+    // Level 2 Static duration workouts
+    public List<String> getStaticDuration2() {
+        List<String> staticWorkout = new LinkedList<>();
+        staticWorkout.add("WEIGHTED PLANK");
+        staticWorkout.add("PUSH-UP HOLD");
+        staticWorkout.add("V-MAN");
+        return staticWorkout;
+    }
+
+    // Level 3 Time intensity converter (To be tested and verified)
+    public Integer timeIntensityConversion3(Integer duration, Integer sets) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (duration <= 20) {
+            in = duration*sets*0.9;
+        } else if (duration > 20 && duration <= 40) {
+            in = duration*sets*1.3;
+        } else {
+            in = duration*sets*1.6;
+        }
+        Integer intensity = (int)in;
+        return intensity;
+    }
+
+    // Level 3 Static duration workouts
+    public List<String> getStaticDuration3() {
+        List<String> staticWorkout = new LinkedList<>();
+        staticWorkout.add("WEIGHTED PUSH-UP HOLD");
+        staticWorkout.add("PULL-UP HOLD");
+        staticWorkout.add("WEIGHTED LEG RAISE HOLD");
+        return staticWorkout;
+    }
+
+    // Static Repetition Workout
+    // Level 1 Repetition intensity converter (To be tested and verified)
+    public Integer repIntensityConversion1(Integer repetition, Integer sets) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (repetition <= 40) {
             in = repetition*sets*0.7;
-        } else if (repetition > 20 && repetition <= 40) {
+        } else if (repetition > 40 && repetition <= 60) {
             in = repetition*sets;
         } else {
             in = repetition*sets*1.3;
@@ -216,14 +275,87 @@ public class WorkoutService {
         return intensity;
     }
 
-    // Create list of static workouts (Duration-based)
-    public List<String> getStatics() {
+    // Level 1 Static duration workouts
+    public List<String> getStaticRepetition1() {
         List<String> staticWorkout = new LinkedList<>();
-        staticWorkout.add("PLANK");
-        staticWorkout.add("SIDE PLANK");
+        staticWorkout.add("CRUNCHES");
+        staticWorkout.add("LEG THRUST");
+        staticWorkout.add("RUSSIAN TWIST");
+        staticWorkout.add("MOUNTAIN CLIMBERS");
+        return staticWorkout;
+    }
+
+    // Level 2 Repetition intensity converter (To be tested and verified)
+    public Integer repIntensityConversion2(Integer repetition, Integer sets) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (repetition <= 30) {
+            in = repetition*sets*0.9;
+        } else if (repetition > 30 && repetition <= 50) {
+            in = repetition*sets*1.1;
+        } else {
+            in = repetition*sets*1.4;
+        }
+        Integer intensity = (int)in;
+        return intensity;
+    }
+
+    // Level 2 Static duration workouts
+    public List<String> getStaticRepetition2() {
+        List<String> staticWorkout = new LinkedList<>();
+        staticWorkout.add("BICYCLE CRUNCHES");
+        staticWorkout.add("FLUTTER KICKS");
+        staticWorkout.add("SUPERMAN BACK");
+        staticWorkout.add("JUMPING JACKS");
+        return staticWorkout;
+    }
+
+    // Level 3 Repetition intensity converter (To be tested and verified)
+    public Integer repIntensityConversion3(Integer repetition, Integer sets) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (repetition <= 25) {
+            in = repetition*sets*0.9;
+        } else if (repetition > 25 && repetition <= 40) {
+            in = repetition*sets*1.1;
+        } else {
+            in = repetition*sets*1.4;
+        }
+        Integer intensity = (int)in;
+        return intensity;
+    }
+
+    // Level 3 Static duration workouts
+    public List<String> getStaticRepetition3() {
+        List<String> staticWorkout = new LinkedList<>();
+        staticWorkout.add("PUSH-UP");
+        staticWorkout.add("SIT-UP");
         staticWorkout.add("LEG RAISE");
-        staticWorkout.add("V-MAN");
-        staticWorkout.add("PUSH-UP HOLD");
+        staticWorkout.add("JACK KNIVES");
+        return staticWorkout;
+    }
+
+    // Level 4 Repetition intensity converter (To be tested and verified)
+    public Integer repIntensityConversion4(Integer repetition, Integer sets) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (repetition <= 4) {
+            in = repetition*sets*7;
+        } else if (repetition > 4 && repetition <= 7) {
+            in = repetition*sets*8.4;
+        } else {
+            in = repetition*sets*10.5;
+        }
+        Integer intensity = (int)in;
+        return intensity;
+    }
+
+    // Level 4 Static duration workouts
+    public List<String> getStaticRepetition4() {
+        List<String> staticWorkout = new LinkedList<>();
+        staticWorkout.add("PULL-UP");
+        staticWorkout.add("DIPS");
+        staticWorkout.add("ABS ROLLER");
         return staticWorkout;
     }
 }
