@@ -358,4 +358,49 @@ public class WorkoutService {
         staticWorkout.add("ABS ROLLER");
         return staticWorkout;
     }
+
+    // Sprint intensity converter (To be tested and verified)
+    public Integer fastIntensityConversion(Integer distance, Integer sets) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (distance <= 200) {
+            in = distance*sets*1.7;
+        } else if (distance > 200 && distance <= 400) {
+            in = distance*sets*2;
+        } else {
+            in = distance*sets*2.5;
+        }
+        Integer intensity = (int)in;
+        return intensity;       
+    }
+
+    // Uncomfortable pace intensity converter (To be tested and verified)
+    public Integer moderateIntensityConversion(Integer distance, Integer sets) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (distance <= 1600) {
+            in = distance*sets*1.3;
+        } else if (distance > 1600 && distance <= 2400) {
+            in = distance*sets*1.5;
+        } else {
+            in = distance*sets*1.7;
+        }
+        Integer intensity = (int)in;
+        return intensity;       
+    }
+
+    // Jog intensity converter (To be tested and verified)
+    public Integer slowIntensityConversion(Integer distance) {
+        // Mathematical operations in double format to allow multiplier
+        double in = 0;
+        if (distance <= 5000) {
+            in = distance;
+        } else if (distance > 5000 && distance <= 7000) {
+            in = distance*1.2;
+        } else { 
+            in = distance*1.5;
+        }
+        Integer intensity = (int)in;
+        return intensity;       
+    }
 }

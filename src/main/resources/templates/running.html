@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running</title>
+</head>
+<body>
+    <h1>MY GRANDMA CAN RUN FASTER! <span data-th-text="${username}"></span></h1>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <h3>Workout List</h3>
+                    <div data-th-each="workout:${workoutList}">
+                        <span data-th-text="${workout.name}"></span>
+                        <span data-th-text="${workout.duration}"></span>
+                        <span data-th-text="${workout.sets}"></span>
+                        <span data-th-text="${workout.intensity}"></span>
+                    </div>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <form action="/workout/running/save1" method="POST">
+                                    <input type="hidden" name="user" data-th-value="${username}">
+                                    <label for="fastrun">INTERVALS</label>
+                                    <input type="hidden" name="fastrun" data-th-value="${fastrun}">
+                                <div>
+                                    <label for="distance">Distance</label>
+                                    <select name="distance" id="distance">
+                                        <option value="100">100m</option>
+                                        <option value="200">200m</option>
+                                        <option value="300">300m</option>
+                                        <option value="400">400m</option>
+                                        <option value="800">>600m</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="sets">Sets</label>
+                                    <select name="sets" id="sets">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
+                                <input type="submit" value="Save">
+                                </form>
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td>
+                                <form action="/workout/running/save2" method="POST">
+                                    <input type="hidden" name="user" data-th-value="${username}">
+                                    <label for="modrun">UNCOMFORTABLE PACE</label>
+                                    <input type="hidden" name="modrun" data-th-value="${modrun}">
+                                <div>
+                                    <label for="distance">Distance</label>
+                                    <select name="distance" id="distance">
+                                        <option value="800">800m</option>
+                                        <option value="1600">1.6km</option>
+                                        <option value="2400">2.4km</option>
+                                        <option value="3200">3.2km</option>
+                                        <option value="4000">>4.0km</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="sets">Sets</label>
+                                    <select name="sets" id="sets">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <input type="submit" value="Save">
+                                </form>
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td>
+                                <form action="/workout/running/save3" method="POST">
+                                    <input type="hidden" name="user" data-th-value="${username}">
+                                    <label for="slowrun">LONG DISTANCE JOG</label>
+                                    <input type="hidden" name="slowrun" data-th-value="${slowrun}">
+                                <div>
+                                    <label for="distance">Distance</label>
+                                    <select name="distance" id="distance">
+                                        <option value="3000">3km</option>
+                                        <option value="4000">4km</option>
+                                        <option value="5000">5km</option>
+                                        <option value="6000">6km</option>
+                                        <option value="7000">7km</option>
+                                        <option value="8000">8km</option>
+                                        <option value="9000">9km</option>
+                                        <option value="10000">>10km</option>
+                                    </select>
+                                </div>
+                                <input type="submit" value="Save">
+                                </form>
+                            </td>  
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
