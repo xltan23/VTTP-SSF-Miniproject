@@ -6,6 +6,7 @@
     <title>Workout Summary</title>
 </head>
 <body>
+    <a data-th-href="@{/food/{user}(user=${username})}">TIME TO EAT</a>
     <div data-th-each="workout:${workoutList}">
         <span data-th-text="${workout.name}"></span>
         <span data-th-text="${workout.duration}"></span>

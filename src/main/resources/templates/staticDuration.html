@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>HOLD IT THERE! <span data-th-text="${username}"></span></h1>
-
+    <a data-th-href="@{/workout/{user}(user=${username})}">Return to workout</a>
     <div>
         <table>
             <tr>

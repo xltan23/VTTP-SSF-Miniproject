@@ -75,4 +75,23 @@ public class FoodController {
         String userTrim = user.replaceAll(" ", "%20");
         return "redirect:/food/%s".formatted(userTrim);
     }
+
+    // Form info post to (localhost:8080/food/delete)
+    // Save food to food list
+    // Return to (localhost:8080/food/{user}) 
+    @PostMapping(value = "/delete", consumes="application/x-www-form-urlencoded", produces="text/html")
+    public String removeFood(@RequestBody MultiValueMap<String,String> form, Model model) {
+        // Set the user
+        String user = form.getFirst("user");
+
+        Food food = new Food();
+        // Using time as the identification of Food object
+        food.setTime(form.getFirst("time"));
+
+        // Removing food from repository
+        foodSvc.deleteFood(user, food);
+
+        String userTrim = user.replaceAll(" ", "%20");
+        return "redirect:/food/%s".formatted(userTrim);
+    }
 }

@@ -240,4 +240,39 @@ public class FoodService {
         }
         return newPayload;
     }
+
+    public void deleteFood(String name, Food deleteFood) {
+        // Retrieve food archive
+        Optional<String> opt = foodRepo.get(name);
+        List<Food> foodList = new LinkedList<>();
+        String payload;
+        if (!opt.isEmpty()) {
+            // If user's records exist, fill foodList
+            payload = opt.get();
+            System.out.println(">>> Retrieving all food archive...\n");
+            StringReader sr = new StringReader(payload);
+            JsonReader jr = Json.createReader(sr);
+            JsonArray foodArray = jr.readArray();
+            for (int i = 0; i < foodArray.size(); i++) {
+                JsonObject food = foodArray.getJsonObject(i);
+                foodList.add(Food.createFR(food));
+            }
+        } else {
+            // If user's records absent (i.e. new user), start with empty food list
+        }
+        // Search food list to find the food saved at particular time
+        Food oldFood = foodList.stream().filter(o -> o.getTime().equals(deleteFood.getTime())).findAny().orElse(null);
+        // Remove that food from list
+        foodList.remove(oldFood);
+        // Create empty JSON Array
+        String newPayload = "[]";
+        if (foodList.size() > 0) {
+            // Converting list into JsonArray and into JsonString
+            newPayload = listToJson(foodList);
+            System.out.printf(">>> Saving new food archive: %s\n", newPayload);
+        } else {
+            System.out.println(">>> The food archive is now empty.");
+        }
+        foodRepo.save(name, newPayload);
+    }
 }

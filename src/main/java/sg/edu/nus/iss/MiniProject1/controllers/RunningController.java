@@ -25,7 +25,7 @@ public class RunningController {
     // Link to access user's workout page (localhost:8080/workout/running/{user})
     // Screen display: Access and show temporary workout list | Available workouts to attempt
     @GetMapping("{user}") 
-    public String getUserStaticDuration(
+    public String getUserRunning(
         @PathVariable(name = "user", required = true) String user,
         Model model) {
             List<Workout> workoutList = workSvc.retrieveWorkout(user);
@@ -44,7 +44,7 @@ public class RunningController {
     // Save workout to temporary workout list 
     // Return to (localhost:8080/workout/running/{user})
     @PostMapping(value = "/save1", consumes = "application/x-www-form-urlencoded", produces = "text/html")
-    public String postStaticWorkout1(@RequestBody MultiValueMap<String,String> form, Model model) {
+    public String postRunning1(@RequestBody MultiValueMap<String,String> form, Model model) {
         String user = form.getFirst("user");
 
         Workout workout = new Workout();
@@ -68,7 +68,7 @@ public class RunningController {
     // Save workout to temporary workout list 
     // Return to (localhost:8080/workout/running/{user})
     @PostMapping(value = "/save2", consumes = "application/x-www-form-urlencoded", produces = "text/html")
-    public String postStaticWorkout2(@RequestBody MultiValueMap<String,String> form, Model model) {
+    public String postRunning2(@RequestBody MultiValueMap<String,String> form, Model model) {
         String user = form.getFirst("user");
 
         Workout workout = new Workout();
@@ -92,7 +92,7 @@ public class RunningController {
     // Save workout to temporary workout list 
     // Return to (localhost:8080/workout/running/{user})
     @PostMapping(value = "/save3", consumes = "application/x-www-form-urlencoded", produces = "text/html")
-    public String postStaticWorkout3(@RequestBody MultiValueMap<String,String> form, Model model) {
+    public String postRunning3(@RequestBody MultiValueMap<String,String> form, Model model) {
         String user = form.getFirst("user");
 
         Workout workout = new Workout();
