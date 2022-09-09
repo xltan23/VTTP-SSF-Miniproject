@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.MiniProject1.controllers;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,26 @@ public class IndexController {
     public String getUser(@RequestParam("user") String user, Model model) {
         // Retrieve workout and food archive list
         List<WorkoutSummary> archiveList = workSumSvc.retrieveArchive(user);
+        // Reversed list order to display latest list item on top
+        List<WorkoutSummary> reverseWorkout = new LinkedList<>();
+        if (archiveList.size() != 0) {
+            for (int i = archiveList.size()-1; i > -1; i--) {
+                WorkoutSummary archive = archiveList.get(i);
+                reverseWorkout.add(archive);
+            }
+        }
         List<Food> foodList = foodSvc.retrieveFood(user);
+        // Reversed list order to display latest list item on top
+        List<Food> reverseFood = new LinkedList<>();
+        if (foodList.size() != 0) {
+            for (int i = foodList.size()-1; i > -1; i--) {
+                Food food = foodList.get(i);
+                reverseFood.add(food);
+            }
+        }
         model.addAttribute("username", user.toUpperCase());
-        model.addAttribute("archiveList", archiveList);
-        model.addAttribute("foodList", foodList);
+        model.addAttribute("archiveList", reverseWorkout);
+        model.addAttribute("foodList", reverseFood);
         return "home";
     } 
 }

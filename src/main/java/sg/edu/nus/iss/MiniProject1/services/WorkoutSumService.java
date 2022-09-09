@@ -217,4 +217,22 @@ public class WorkoutSumService {
         Integer recCarbs = (int)rc;
         return recCarbs;
     }
+
+    public String returnMessage(Integer totalIntensity) {
+        if (totalIntensity <= 3000) {
+            return "Your total intensity today is %s, ARE YOU EVEN TRYING?".formatted(totalIntensity);
+        } else if (totalIntensity > 3000 && totalIntensity <= 8000) {
+            return "Your total intensity today is %s, Not too bad! Time to eat~".formatted(totalIntensity);
+        }
+        return "Your total intensity today is %s, WELL DONE! Time to replenish~".formatted(totalIntensity);
+    }
+
+    public Integer maximumFatsGauge(Integer totalIntensity) {
+        if (totalIntensity <= 3000) {
+            return 30;
+        } else if (totalIntensity > 3000 && totalIntensity <= 8000) {
+            return 60;
+        }
+        return 90;       
+    }
 }

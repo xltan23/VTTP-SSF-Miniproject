@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.MiniProject1.controllers;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,19 @@ public class StaticDurationController {
         @PathVariable(name = "user", required = true) String user,
         Model model) {
             List<Workout> workoutList = workSvc.retrieveWorkout(user);
+            // Reversed list order to display latest list item on top
+            List<Workout> reverseWorkout = new LinkedList<>();
+            if (workoutList.size() != 0) {
+                for (int i = workoutList.size()-1; i > -1; i--) {
+                    Workout workout = workoutList.get(i);
+                    reverseWorkout.add(workout);
+                }
+            }
             List<String> staticWorkout1 = workSvc.getStaticDuration1();
             List<String> staticWorkout2 = workSvc.getStaticDuration2();
             List<String> staticWorkout3 = workSvc.getStaticDuration3();
             model.addAttribute("username", user.toUpperCase());
-            model.addAttribute("workoutList", workoutList);
+            model.addAttribute("workoutList", reverseWorkout);
             model.addAttribute("staticWorkout1", staticWorkout1);
             model.addAttribute("staticWorkout2", staticWorkout2);
             model.addAttribute("staticWorkout3", staticWorkout3);

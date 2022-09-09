@@ -6,6 +6,16 @@
     <title>Food Page</title>
 </head>
 <body>
+    <div data-th-if="${!empty}">
+        <h3><span data-th-text="${username}"></span>, <span data-th-text="${message}"></span></h3>
+        <h4>Your recommended nutrients intake:</h4>
+    </div>
+    <div data-th-if="${empty}">
+        <h3><span data-th-text="${username}"></span>, you have yet to workout today.</h3>
+        <h3>GET UP AND WORKOUT, YOU LAZY BUM!</h3>
+        <h4>Your previous workout required nutrients:</h4>
+    </div>
+
     <table>
         <tr>
             <td>
@@ -13,19 +23,19 @@
                     <input type="hidden" name="user" data-th-value="${username}">
                     <div>
                         <label for="minCalories">Minimum Calories:</label>
-                        <input type="text" name="minCalories">
+                        <input type="text" name="minCalories" data-th-value="${caloriesBurnt}">
                     </div>
                     <div>
                         <label for="minCarbs">Minimum Carbohydrates</label>
-                        <input type="text" name="minCarbs">
+                        <input type="text" name="minCarbs" data-th-value="${recCarbs}">
                     </div>
                     <div>
                         <label for="minProtein">Minimum Protein</label>
-                        <input type="text" name="minProtein">
+                        <input type="text" name="minProtein" data-th-value="${recProtein}">
                     </div>
                     <div>
                         <label for="maxFat">Maximum Fats</label>
-                        <input type="text" name="maxFat">
+                        <input type="text" name="maxFat" data-th-value="${maxFats}">
                     </div>
                     <div>
                         <input type="submit" value="GO!">

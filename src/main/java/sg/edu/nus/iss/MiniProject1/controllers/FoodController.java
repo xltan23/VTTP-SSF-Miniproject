@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.MiniProject1.controllers;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.nus.iss.MiniProject1.models.Food;
+import sg.edu.nus.iss.MiniProject1.models.Workout;
+import sg.edu.nus.iss.MiniProject1.models.WorkoutSummary;
 import sg.edu.nus.iss.MiniProject1.services.FoodService;
+import sg.edu.nus.iss.MiniProject1.services.WorkoutService;
+import sg.edu.nus.iss.MiniProject1.services.WorkoutSumService;
 
 @Controller
 @RequestMapping(path = "/food")
@@ -22,14 +27,43 @@ public class FoodController {
     @Autowired
     private FoodService foodSvc;
 
+    @Autowired
+    private WorkoutService workSvc;
+
+    @Autowired
+    private WorkoutSumService workSumSvc;
+
     // Link to access user's food page (localhost:8080/food/{user}) [food.html]
     @GetMapping("{user}")
     public String getUserFood(
         @PathVariable(name = "user", required = true) String user,
         Model model) {
+            List<Workout> workoutList = workSvc.retrieveWorkout(user);
+            List<WorkoutSummary> archiveList = workSumSvc.retrieveArchive(user);
+            WorkoutSummary latestSummary = archiveList.get(archiveList.size()-1);
+            Integer totalIntensity = latestSummary.getTotalIntensity();
+            Integer caloriesBurnt = latestSummary.getCaloriesBurnt();
+            Integer recProtein = latestSummary.getRecProtein();
+            Integer recCarbs = latestSummary.getRecCarbs();
+            Integer maxFats = workSumSvc.maximumFatsGauge(totalIntensity);
+            String message = workSumSvc.returnMessage(totalIntensity);
             List<Food> foodList = foodSvc.retrieveFood(user);
+            // Reversed list order to display latest list item on top
+            List<Food> reverseFood = new LinkedList<>();
+            if (foodList.size() != 0) {
+                for (int i = foodList.size()-1; i > -1; i--) {
+                    Food food = foodList.get(i);
+                    reverseFood.add(food);
+                }
+            }
             model.addAttribute("username", user);
-            model.addAttribute("foodList", foodList);
+            model.addAttribute("empty", workoutList.isEmpty());
+            model.addAttribute("caloriesBurnt", caloriesBurnt);
+            model.addAttribute("recProtein", recProtein);
+            model.addAttribute("recCarbs", recCarbs);
+            model.addAttribute("maxFats", maxFats);
+            model.addAttribute("message", message);
+            model.addAttribute("foodList", reverseFood);
             return "food";
     }
 
