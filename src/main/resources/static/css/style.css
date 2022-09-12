@@ -10,6 +10,28 @@
     padding: 10px;
 }
 
+.center-it-small {
+    display: flex;
+    justify-content: center;
+    padding: 1px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.center-it-top {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.center-it-bottom {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
 .container {
     width: 1300px;
     display: flex;
@@ -56,6 +78,16 @@
     width: 600px;
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+.table-form {
+    table-layout: fixed;
+    width: 600px;
+}
+
+.table-form2 {
+    table-layout: fixed;
+    width: 800px;
 }
 
 .round {
@@ -130,6 +162,40 @@
     background-color: lightseagreen;
     height: 18px;
     padding: 2px;
+}
+
+.tdcontainer3 {
+    display: flex;
+    justify-content: center;
+    background-color: gold;
+    height: 20px;
+    padding: 0px;
+}
+
+.idcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 70px;
+    background-color: lightgoldenrodyellow;
+}
+
+.tdcontainer4 {
+    display: flex;
+    justify-content: center;
+    background-color: orangered;
+    height: 20px;
+    padding: 0px;
+}
+
+.removecontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 70px;
+    background-color: lightcoral; 
 }
 
 h4 {
