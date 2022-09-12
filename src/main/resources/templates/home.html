@@ -3,67 +3,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>R.EA.L. FOOD AND FITNESS</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+<marquee behavior="" direction="" style="background-color: black; color: white;">
+    <h4 data-th-if="${hour le 12}">Good morning, <span data-th-text="${username}"></span>. Time to workout!</h4>
+    <h4 data-th-unless="${hour le 12}">Good afternoon, <span data-th-text="${username}"></span>. Time to workout!</h4>
+</marquee>
 <body>
-    <h1>Welcome <span data-th-text="${username}"></span></h1>
-    
+    <h5 class="top-right"><span data-th-text="${date}"></span></h5>
+    <div class="container" style="background-color: transparent;">
+        <img src="./images/Application Logo.png" alt="" width="10%" height="30px">
+        <h1>Rest EAt Lift</h1>
+    </div>
     <div>
-        <table>
+        <table class="table-main">
             <tr>
-                <td>
-                    <h3>Workout Archive</h3>
-                    <a data-th-href="@{/workout/{user}(user=${username})}">Workout</a>
+                <td class="center-text">
+                    <a data-th-href="@{/workout/{user}(user=${username})}">
+                        <div class="image">
+                            <img class="round" src="./images/Workout Icon.jpg" alt="" width="150px" height="150px">
+                            <div class="image-overlay">
+                                <div class="image-title">Workout</div>
+                                <p class="image-description">Train Hard!</p>
+                            </div>
+                        </div>                
+                    </a>
                 </td>
-                <td>
-                    <h3>Food Archive</h3>
-                    <a data-th-href="@{/food/{user}(user=${username})}">Food</a>
+                <td class="center-text">
+                    <a data-th-href="@{/food/{user}(user=${username})}">
+                        <div class="image">
+                            <img class="round" src="./images/Food Icon.jpg" alt="" width="150px" height="150px">
+                            <div class="image-overlay">
+                                <div class="image-title">Food</div>
+                                <p class="image-description">Eat well!</p>
+                            </div>
+                        </div>      
+                    </a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <table>
-                        <tr>
-                            <td>Name of Workout</td>
-                            <td>Data & Time</td>
-                            <td>Total Intensity</td>
-                            <td>Calories Burnt</td>
-                            <td>Recommended Protein Intake</td>
-                            <td>Recommended Carbs Intake</td>
-                        </tr>
+                    <table class="table-workout">
                         <tr data-th-each="archive:${archiveList}">
-                            <td data-th-text="${archive.name}"></td>
-                            <td data-th-text="${archive.time}"></td>
-                            <td data-th-text="${archive.totalIntensity}"></td>
-                            <td data-th-text="${archive.caloriesBurnt}"></td>
-                            <td data-th-text="${archive.recProtein}"></td>
-                            <td data-th-text="${archive.recCarbs}"></td>
+                                <div class="tdcontainer1 space-between">
+                                    <h4><span data-th-text="${archive.name}"></span></h4>
+                                    <h5>Date: <span data-th-text="${archive.time}"></span></h5>
+                                </div>
+                                <div class="smalldiv1center">
+                                    <div class="smalldiv1">
+                                        Total Intensity: <span data-th-text="${archive.totalIntensity}"></span>
+                                    </div>
+                                    <div class="smalldiv1">
+                                        Calories Burnt: <span data-th-text="${archive.caloriesBurnt}"></span>
+                                    </div>
+                                    <div class="smalldiv1">
+                                        Recommended Protein: <span data-th-text="${archive.recProtein}"></span>
+                                    </div>
+                                    <div class="smalldiv1">
+                                        Recommended Carbs: <span data-th-text="${archive.recCarbs}"></span>
+                                    </div>         
+                                </div>                           
                         </tr>
                     </table>
                 </td>
                 <td>
-                    <table>
-                        <tr>
-                            <td>Time</td>
-                            <td>ID</td>
-                            <td>Title</td>
-                            <td>Image URL</td>
-                            <td>Image Type</td>
-                            <td>Calories</td>
-                            <td>Protein</td>
-                            <td>Fat</td>
-                            <td>Carbs</td>
-                        </tr>
+                    <table class="table-food">
                         <tr data-th-each="food:${foodList}">
-                            <td data-th-text="${food.time}"></td>
-                            <td data-th-text="${food.id}"></td>
-                            <td data-th-text="${food.title}"></td>
-                            <td data-th-text="${food.image}"></td>
-                            <td data-th-text="${food.imageType}"></td>
-                            <td data-th-text="${food.calories}"></td>
-                            <td data-th-text="${food.protein}"></td>
-                            <td data-th-text="${food.fat}"></td>
-                            <td data-th-text="${food.carbs}"></td>
+                            <div class="tdcontainer2 space-between">
+                                    <h4><span data-th-text="${food.title}"></span></h4>
+                                    <h5>Date: <span data-th-text="${food.time}"></span></h5>
+                            </div>
+                            <div class="container-food">
+                                <img data-th-src="@{{link}(link=${food.image})}" alt="">
+                                <div class="smalldiv2center">
+                                    <div class="smalldiv2">
+                                        Calories: <span data-th-text="${food.calories}"></span>
+                                    </div>
+                                    <div class="smalldiv2">
+                                        Protein: <span data-th-text="${food.protein}"></span>
+                                    </div>
+                                    <div class="smalldiv2">
+                                        Carbs: <span data-th-text="${food.carbs}"></span>
+                                    </div>
+                                    <div class="smalldiv2">
+                                        Fats: <span data-th-text="${food.fat}"></span>
+                                    </div>         
+                                </div>    
+                            </div>
                         </tr>
                     </table>
                 </td>

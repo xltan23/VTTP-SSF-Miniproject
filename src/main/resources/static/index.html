@@ -4,12 +4,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+<marquee behavior="" direction="" style="background-color: black; color: white;">Welcome to REAL Food & Fitness</marquee>
 <body>
-    <form action="/home" method="GET">
-        <label for="name">Username:</label>
-        <input type="text" name="user" required>
-        <input type="submit" value="Enter">
-    </form>
+    <div class="center-img">
+        <img src="./images/Application Logo.png" alt="" height="150px">
+    </div>
+
+    <div class="center-it">
+        Please enter your username to log in.
+    </div>
+    <div class="center-it">
+        <form action="/home" method="GET">
+            <label for="name">Username:</label>
+            <input type="text" name="user" required>
+            <input type="submit" value="Enter">
+        </form>     
+    </div>
+
 </body>
 </html>

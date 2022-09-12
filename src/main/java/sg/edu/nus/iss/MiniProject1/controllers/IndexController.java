@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.MiniProject1.controllers;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,6 +31,8 @@ public class IndexController {
     // Map to home page (localhost:8080/home?user={user}) [home.html]
     @GetMapping
     public String getUser(@RequestParam("user") String user, Model model) {
+        // Obtain hour of the day
+        Calendar cal = Calendar.getInstance();
         // Retrieve workout and food archive list
         List<WorkoutSummary> archiveList = workSumSvc.retrieveArchive(user);
         // Reversed list order to display latest list item on top
@@ -49,6 +53,8 @@ public class IndexController {
             }
         }
         model.addAttribute("username", user.toUpperCase());
+        model.addAttribute("hour", cal.get(Calendar.HOUR_OF_DAY));
+        model.addAttribute("date", (new Date()).toString());
         model.addAttribute("archiveList", reverseWorkout);
         model.addAttribute("foodList", reverseFood);
         return "home";
