@@ -12,37 +12,32 @@
 </marquee>
 <body>
     <h5 class="top-right"><span data-th-text="${date}"></span></h5>
-    <div class="home-container">
-        <img src="./images/Application Logo.png" alt="" height="30px">
-        <h1>Rest EAt Lift</h1>
+    <div class="full-container">
+        <div class="image">
+            <a data-th-href="@{/workout/{user}(user=${username})}">
+                <img src="./images/Workout Icon.jpg" alt="" width="150px" height="150px">
+                <div class="image-overlay">
+                    <div class="image-title">Workout</div>
+                    <p class="image-description">Train Hard!</p>
+                </div>
+            </a>
+        </div>
+        <div>
+            <img src="./images/Application Logo.png" alt="" height="150px">
+        </div>
+        <div class="image">
+            <a data-th-href="@{/food/{user}(user=${username})}">
+                <img src="./images/Food Icon.jpg" alt="" width="150px" height="150px">
+                <div class="image-overlay">
+                    <div class="image-title">Food</div>
+                    <p class="image-description">Eat well!</p>
+                </div>
+            </a>
+        </div>     
     </div>
 
     <div>
         <table>
-            <tr>
-                <td>
-                    <div class="image">
-                        <a data-th-href="@{/workout/{user}(user=${username})}">
-                            <img src="./images/Workout Icon.jpg" alt="" width="150px" height="150px">
-                            <div class="image-overlay">
-                                <div class="image-title">Workout</div>
-                                <p class="image-description">Train Hard!</p>
-                            </div>
-                        </a>
-                    </div>   
-                </td>
-                <td>
-                    <div class="image">
-                        <a data-th-href="@{/food/{user}(user=${username})}">
-                            <img src="./images/Food Icon.jpg" alt="" width="150px" height="150px">
-                            <div class="image-overlay">
-                                <div class="image-title">Food</div>
-                                <p class="image-description">Eat well!</p>
-                            </div>
-                        </a>
-                    </div>      
-                </td>
-            </tr>
             <tr>
                 <td>
                     <div class="mini-container">
@@ -63,7 +58,7 @@
                         <img src="./images/Milk Icon.jpg" alt="" width="50px" height="50px">
                         <span class="span-it">Protein &nbsp;|</span>
                         <img src="./images/Rice Icon.jpg" alt="" width="50px" height="50px">
-                        <span class="span-it">Carbs &nbsp;|</span>
+                        <span class="span-it">Carbohydrates &nbsp;|</span>
                         <img src="./images/Fats Icon.jpg" alt="" width="50px" height="50px">
                         <span class="span-it">Fats</span>
                     </div>                 

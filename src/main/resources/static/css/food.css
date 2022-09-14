@@ -1,0 +1,146 @@
+h2 {
+    font-family: 'Quicksand', sans-serif;
+}
+
+h5 {
+    margin-top: -0.5px;
+    margin-bottom: -1px;
+}
+
+.top-right {
+    position: absolute;
+    top: 20;
+    right: 0;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.home-container {
+    width: 1300px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: transparent;
+}
+
+.home-container img {
+    margin-right: 50px;
+}
+
+.center-it-message {
+    display: flex;
+    justify-content: center;
+    padding: 1px;
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+}
+
+.form-heading {
+    table-layout: fixed;
+    width: 575px;
+}
+
+.food-heading {
+    table-layout: fixed;
+    width: 815px;
+}
+
+.center-it-heading {
+    display: flex;
+    justify-content: center;
+    padding: -5px;
+    border: 1px solid black;
+    border-radius: 30px;
+}
+
+.center-it-form {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.form-div {
+    padding: 10px;
+}
+
+
+.id-heading {
+    display: flex;
+    justify-content: center;
+    background-color: gold;
+    height: 20px;
+}
+
+.id-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    background-color: lightgoldenrodyellow;
+}
+
+.table-food-container1 {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightseagreen;
+    height: 20px;
+}
+
+.table-food-container2 {
+    display: flex;
+    align-items: center;
+    width: 675px;
+    height: 70px;
+    background-color: aquamarine;
+}
+
+#food-id {
+    height: 70px;
+}
+
+.table-food-center {
+    margin-top: -0.5px;
+    margin-bottom: -1px;
+    text-align: center;
+}
+
+.table-food-div {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
+
+.table-food-div img {
+    margin-left: 50px;
+    margin-right: 3px;
+    border-radius: 50px;
+}
+
+.remove-heading {
+    display: flex;
+    justify-content: center;
+    background-color: orangered;
+    height: 20px;
+}
+
+.remove-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    background-color: lightcoral; 
+}
+
+.full-container {
+    margin-left: 400px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent;
+}

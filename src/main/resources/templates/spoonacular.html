@@ -3,26 +3,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food List</title>
+    <title>R.EA.L. SPOONACULAR</title>
+    <link rel="stylesheet" data-th-href="@{/css/food.css}">
 </head>
+<marquee behavior="" direction="" style="background-color: black; color: white;">
+    <span data-th-text="${username}"></span>, select any food from SPOONACULAR to meet your dietary needs!
+</marquee>
 <body>
-    <h1><span data-th-text="${username}"></span>, Your food choices!</h1>
+    <h5 class="top-right"><span data-th-text="${date}"></span></h5>
+    
+    <div class="full-container">
+        <a data-th-href="@{/home?user={user}(user=${username})}">
+            <img data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
+        </a>
+        <div>
+            <span>In Partnership with</span>
+        </div>
+        <img data-th-src="@{/images/Spoonacular Icon.jpg}" alt="" height="100px">
+    </div>
+
+    <div class="center-it-message">
+        <h3>Based on your dietary request, here are your food options</h3>
+    </div>
+
     <table>
         <tr data-th-each="food:${foodList}">
-
+            <div>
+                <h5>ID: <span data-th-text="${food.id}"></span></h5>
+                <h3 data-th-text="${food.title}"></h3>
+                <p>
+                    <img data-th-src="@{{link}(link=${food.image})}" alt="">
+                    <h6 data-th-text="${food.calories}"></h6>
+                    <h6 data-th-text="${food.protein}"></h6>
+                    <h6 data-th-text="${food.fat}"></h6>
+                    <h6 data-th-text="${food.carbs}"></h6> 
+                </p>
+            </div>
             <form action="/food/save" method="POST">
-                <div>
-                    <h5>ID: <span data-th-text="${food.id}"></span></h5>
-                    <h3 data-th-text="${food.title}"></h3>
-                    <p>
-                        <h6 data-th-text="${food.time}"></h6>
-                        <h6 data-th-text="${food.image}"></h6>
-                        <h6 data-th-text="${food.imageType}"></h6>
-                        <h6 data-th-text="${food.calories}"></h6>
-                        <h6 data-th-text="${food.protein}"></h6>
-                        <h6 data-th-text="${food.fat}"></h6>
-                        <h6 data-th-text="${food.carbs}"></h6> 
-                    </p>
                     <input type="hidden" name="user" data-th-value="${username}">
                     <input type="hidden" name="time" data-th-value="${food.time}">
                     <input type="hidden" name="id" data-th-value="${food.id}">
@@ -34,7 +51,6 @@
                     <input type="hidden" name="fat" data-th-value="${food.fat}">
                     <input type="hidden" name="carbs" data-th-value="${food.carbs}">
                     <input type="submit" value="Save">
-                </div>
             </form>
         </tr>
     </table>
