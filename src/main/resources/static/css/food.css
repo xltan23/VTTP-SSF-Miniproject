@@ -65,6 +65,11 @@ h5 {
     padding: 10px;
 }
 
+.center-it-table {
+    display: flex;
+    justify-content: center;
+}
+
 
 .id-heading {
     display: flex;
@@ -143,4 +148,20 @@ h5 {
     align-items: center;
     padding: 20px;
     background-color: transparent;
+}
+
+.save-heading {
+    display: flex;
+    justify-content: center;
+    background-color: gray;
+    height: 20px;
+}
+
+.save-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    background-color: lightgray; 
 }

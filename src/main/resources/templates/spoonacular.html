@@ -26,32 +26,57 @@
         <h3>Based on your dietary request, here are your food options</h3>
     </div>
 
-    <table>
+    <table class="center-it-table">
         <tr data-th-each="food:${foodList}">
-            <div>
-                <h5>ID: <span data-th-text="${food.id}"></span></h5>
-                <h3 data-th-text="${food.title}"></h3>
-                <p>
-                    <img data-th-src="@{{link}(link=${food.image})}" alt="">
-                    <h6 data-th-text="${food.calories}"></h6>
-                    <h6 data-th-text="${food.protein}"></h6>
-                    <h6 data-th-text="${food.fat}"></h6>
-                    <h6 data-th-text="${food.carbs}"></h6> 
-                </p>
-            </div>
-            <form action="/food/save" method="POST">
-                    <input type="hidden" name="user" data-th-value="${username}">
-                    <input type="hidden" name="time" data-th-value="${food.time}">
-                    <input type="hidden" name="id" data-th-value="${food.id}">
-                    <input type="hidden" name="title" data-th-value="${food.title}">
-                    <input type="hidden" name="image" data-th-value="${food.image}">
-                    <input type="hidden" name="imageType" data-th-value="${food.imageType}">
-                    <input type="hidden" name="calories" data-th-value="${food.calories}">
-                    <input type="hidden" name="protein" data-th-value="${food.protein}">
-                    <input type="hidden" name="fat" data-th-value="${food.fat}">
-                    <input type="hidden" name="carbs" data-th-value="${food.carbs}">
-                    <input type="submit" value="Save">
-            </form>
+            <td>
+                <div class="id-heading">
+                    <h5>ID</h5>
+                </div>
+                <div class="id-box">
+                    <span data-th-text="${food.id}"></span>
+                </div>
+            </td>
+            <td>
+                <div class="table-food-container1">
+                    <h5><span data-th-text="${food.title}"></span></h5>
+                    <h5>Date: <span data-th-text="${food.time}"></span></h5>    
+                </div>
+                <div class="table-food-container2">
+                    <img id="food-id" data-th-src="@{{link}(link=${food.image})}" alt="">
+                    <div class="table-food-center">
+                        <div class="table-food-div">
+                            <img data-th-src="@{/images/Calories Icon.jpg}" alt="" width="50px" height="50px">
+                            <span data-th-text="${food.calories}"></span>kcal
+                            <img data-th-src="@{/images/Milk Icon.jpg}" alt="" width="50px" height="50px">
+                            <span data-th-text="${food.protein}"></span>
+                            <img data-th-src="@{/images/Rice Icon.jpg}" alt="" width="50px" height="50px">
+                            <span data-th-text="${food.carbs}"></span>
+                            <img data-th-src="@{/images/Fats Icon.jpg}" alt="" width="50px" height="50px">
+                            <span data-th-text="${food.fat}"></span>
+                        </div>         
+                    </div>    
+                </div>
+            </td> 
+            <td>
+                <div class="save-heading">
+                    <h5>Save</h5>
+                </div>
+                <div class="save-box">
+                    <form action="/food/save" method="POST">
+                        <input type="hidden" name="user" data-th-value="${username}">
+                        <input type="hidden" name="time" data-th-value="${food.time}">
+                        <input type="hidden" name="id" data-th-value="${food.id}">
+                        <input type="hidden" name="title" data-th-value="${food.title}">
+                        <input type="hidden" name="image" data-th-value="${food.image}">
+                        <input type="hidden" name="imageType" data-th-value="${food.imageType}">
+                        <input type="hidden" name="calories" data-th-value="${food.calories}">
+                        <input type="hidden" name="protein" data-th-value="${food.protein}">
+                        <input type="hidden" name="fat" data-th-value="${food.fat}">
+                        <input type="hidden" name="carbs" data-th-value="${food.carbs}">
+                        <input type="image" data-th-src="@{/images/Save Icon.jpg}" alt="Submit" style="float:center" width="50px" height="50px">
+                    </form>
+                </div>
+            </td>
         </tr>
     </table>
 </body>
