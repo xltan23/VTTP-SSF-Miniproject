@@ -41,13 +41,24 @@ public class FoodController {
         Model model) {
             List<Workout> workoutList = workSvc.retrieveWorkout(user);
             List<WorkoutSummary> archiveList = workSumSvc.retrieveArchive(user);
-            WorkoutSummary latestSummary = archiveList.get(archiveList.size()-1);
-            Integer totalIntensity = latestSummary.getTotalIntensity();
-            Integer caloriesBurnt = latestSummary.getCaloriesBurnt();
-            Integer recProtein = latestSummary.getRecProtein();
-            Integer recCarbs = latestSummary.getRecCarbs();
-            Integer maxFats = workSumSvc.maximumFatsGauge(totalIntensity);
-            String message = workSumSvc.returnMessage(totalIntensity);
+            Integer totalIntensity = 0;
+            Integer caloriesBurnt = 0;
+            Integer recProtein = 0;
+            Integer recCarbs = 0;
+            Integer maxFats = 0;
+            String message = "";
+
+            if (archiveList.size() > 0) {
+                WorkoutSummary latestSummary = archiveList.get(archiveList.size()-1);
+                totalIntensity = latestSummary.getTotalIntensity();
+                caloriesBurnt = latestSummary.getCaloriesBurnt();
+                recProtein = latestSummary.getRecProtein();
+                recCarbs = latestSummary.getRecCarbs();
+                maxFats = workSumSvc.maximumFatsGauge(totalIntensity);
+                message = workSumSvc.returnMessage(totalIntensity);
+            }
+
+
             List<Food> foodList = foodSvc.retrieveFood(user);
             // Reversed list order to display latest list item on top
             List<Food> reverseFood = new LinkedList<>();
