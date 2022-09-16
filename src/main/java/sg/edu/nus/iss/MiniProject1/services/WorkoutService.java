@@ -229,7 +229,7 @@ public class WorkoutService {
     // Level 2 Static duration workouts
     public List<String> getStaticDuration2() {
         List<String> staticWorkout = new LinkedList<>();
-        staticWorkout.add("WEIGHTED PLANK");
+        staticWorkout.add("(W) PLANK");
         staticWorkout.add("PUSH-UP HOLD");
         staticWorkout.add("V-MAN");
         return staticWorkout;
@@ -253,9 +253,9 @@ public class WorkoutService {
     // Level 3 Static duration workouts
     public List<String> getStaticDuration3() {
         List<String> staticWorkout = new LinkedList<>();
-        staticWorkout.add("WEIGHTED PUSH-UP HOLD");
+        staticWorkout.add("(W) PUSH-UP HOLD");
         staticWorkout.add("PULL-UP HOLD");
-        staticWorkout.add("WEIGHTED LEG RAISE HOLD");
+        staticWorkout.add("(W) LEG RAISE HOLD");
         return staticWorkout;
     }
 

@@ -167,3 +167,97 @@ h5 {
     text-decoration: none;
     color: white;
 }
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.image2 {
+    position: relative;
+    width: 130px;
+    box-shadow: 0px 0px 0px gray;
+}
+
+.image2 img {
+    border-radius: 30px;
+}
+
+.image2-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 30px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+.image2-overlay > * {
+    transform: translateY(20px);
+    transition: transform 0.25s;
+}
+
+.image2-overlay:hover {
+    opacity: 1;
+    box-shadow: 5px 5px 5px black;
+}
+
+.image2-overlay:hover > * {
+    transform: translateY(0);
+}
+
+.image2-title {
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+.image2-description {
+    font-size: 0.6em;
+    margin-top: 0.25em;
+}
+
+.form-small-font {
+    font-weight: bold; 
+    font-size: small;
+    display: flex;
+    justify-content: center;
+}
+
+.form-div-margin {
+    margin-top: 10px;
+}
+
+.moderate-row {
+    background-color: rgb(255,242,0);
+}
+
+.high-row {
+    background-color: orange;
+}
+
+.extreme-row {
+    background-color: orangered;
+}
+
+.add-image {
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+#duration {
+    width: 61px;
+}
+
+#sets {
+    width: 54px;
+}
