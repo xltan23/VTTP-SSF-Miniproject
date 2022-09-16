@@ -19,6 +19,29 @@ h5 {
     background-color: transparent;
 }
 
+.home-container img {
+    margin-right: 50px;
+}
+
+.end-workout {
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    background-color: black;
+}
+
+.end-workout-text {
+    font-weight: bold;
+    font-size: medium;
+    margin-right: 10px;
+    color: white;
+}
+
+.end-workout-image {
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
 .table-heading {
     table-layout: fixed;
     width: 500px;
@@ -35,6 +58,8 @@ h5 {
     padding: -5px;
     border: 1px solid black;
     border-radius: 30px;
+    background-color: steelblue;
+    color: aliceblue;
 }
 
 .table-name-container {
@@ -123,4 +148,22 @@ h5 {
 .image-description {
     font-size: 0.75em;
     margin-top: 0.25em;
+}
+
+.return-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: black;
+}
+
+.return-container img {
+    margin-right: 30px;
+    border-radius: 30px;
+}
+
+.text-decoration {
+    text-decoration: none;
+    color: white;
 }

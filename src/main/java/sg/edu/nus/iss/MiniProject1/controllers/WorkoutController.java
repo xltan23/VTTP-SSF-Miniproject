@@ -45,6 +45,7 @@ public class WorkoutController {
                 }
             }
             model.addAttribute("username", user.toUpperCase());
+            model.addAttribute("date", (new Date()).toString());
             model.addAttribute("workoutList", reverseWorkout);
             return "workout";
     }

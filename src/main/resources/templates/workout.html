@@ -19,12 +19,12 @@
         <h2>Rest EAt Lift</h2>
     </div>
 
-    <div>
+    <div class="end-workout">
         <form action="/workout/summary" method="POST">
             <input type="hidden" name="user" data-th-value="${username}">
-            <label for="workoutName">Give a name for your workout!</label>
-            <input type="text" name="workoutName" required>
-            <input type="submit" value="END WORKOUT!">
+            <label for="workoutName"><span class="end-workout-text">End workout?</span></label>
+            <input type="text" name="workoutName" placeholder="Name your workout session" size="30" required>
+            <input class="end-workout-image" type="image" data-th-src="@{/images/Workout Submit Icon.jpg}" alt="Submit" width="20px" height="20px">
         </form>
     </div>
 
@@ -32,12 +32,12 @@
         <tr>
             <td class="table-heading">
                 <div class="center-it-heading">
-                    <h3>Your workout session so far:</h3>
+                    <h4>Your workout session so far:</h4>
                 </div>
             </td>
             <td class="workout-heading">
                 <div class="center-it-heading">
-                    <h3>Choose your workout!</h3>
+                    <h4>Choose your workout!</h4>
                 </div>
             </td>
         </tr>

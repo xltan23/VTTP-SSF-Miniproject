@@ -4,26 +4,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Static Duration</title>
+    <link rel="stylesheet" data-th-href="@{/css/workout.css}">
 </head>
+<marquee behavior="" direction="" style="background-color: black; color: white;">
+    HOLD IT THERE! <span data-th-text="${username}"></span>
+</marquee>
 <body>
-    <h1>HOLD IT THERE! <span data-th-text="${username}"></span></h1>
-    <a data-th-href="@{/workout/{user}(user=${username})}">Return to workout</a>
-    <div>
-        <table>
-            <tr>
-                <td>
-                    <h3>Workout List</h3>
-                    <div data-th-each="workout:${workoutList}">
-                        <span data-th-text="${workout.name}"></span>
-                        <span data-th-text="${workout.duration}"></span>
-                        <span data-th-text="${workout.sets}"></span>
-                        <span data-th-text="${workout.intensity}"></span>
-                    </div>
-                </td>
-                <td>
-                    <table>
-                        <tr>
-                            <td data-th-each="static1:${staticWorkout1}">
+    <h5 class="top-right"><span data-th-text="${date}"></span></h5>
+    
+    <div class="home-container">
+        <a data-th-href="@{/home?user={user}(user=${username})}">
+            <img data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
+        </a>
+        <h2>Rest EAt Lift</h2>
+    </div>
+    
+    <a class="text-decoration" data-th-href="@{/workout/{user}(user=${username})}">
+        <div class="return-container">
+            <img data-th-src="@{/images/Workout Icon.jpg}" alt="" height="30px">
+            <h4>Select other workout OR End workout</h4>
+        </div>   
+    </a>
+    
+    <table>
+        <tr>
+            <td class="table-heading">
+                <div class="center-it-heading">
+                    <h4>Your workout session so far:</h4>
+                </div>
+            </td>
+            <td class="workout-heading">
+                <div class="center-it-heading">
+                    <h4>Select your workout duration and sets</h4>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr data-th-each="workout:${workoutList}">
+                        <div class="table-name-container">
+                            <h5><span data-th-text="${workout.name}"></span></h5>
+                        </div>
+                        <div class="table-info-container">
+                            <div class="table-workout-center">
+                                <div class="table-workout-div">
+                                    <img data-th-src="@{/images/Timer Icon.jpg}" alt="" width="30px" height="30px">
+                                    <span data-th-text="${workout.duration}"></span>
+                                    <img data-th-src="@{/images/Repetition Icon.jpg}" alt="" width="30px" height="30px">
+                                    <span data-th-text="${workout.repetition}"></span>
+                                    <img data-th-src="@{/images/Sets Icon.jpg}" alt="" width="30px" height="30px">
+                                    <span data-th-text="${workout.sets}"></span>
+                                    <img data-th-src="@{/images/Intensity Icon.jpg}" alt="" width="30px" height="30px">
+                                    <span data-th-text="${workout.intensity}"></span>
+                                </div>         
+                            </div>    
+                        </div>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td data-th-each="static1:${staticWorkout1}">
                                 <form action="/workout/static-duration/save1" method="POST">
                                     <input type="hidden" name="user" data-th-value="${username}">
                                     <label for="staticName1"><span data-th-text="${static1}"></span></label>
@@ -40,7 +83,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="sets">Sets</label>
+                                    <label for="sets">Set Count</label>
                                     <select name="sets" id="sets">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -51,8 +94,8 @@
                                 </div>
                                 <input type="submit" value="Save">
                                 </form>
-                            </td>  
-                        </tr>
+                        </td>  
+                    </tr>
                         <tr>
                             <td data-th-each="static2:${staticWorkout2}">
                                 <form action="/workout/static-duration/save2" method="POST">
@@ -119,7 +162,7 @@
                 </td>
             </tr>
         </table>
-    </div>
+
 
 </body>
 </html>
