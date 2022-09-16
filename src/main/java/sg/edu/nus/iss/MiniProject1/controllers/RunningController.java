@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.MiniProject1.controllers;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class RunningController {
             String uncomfortablePace = "UNCOMFORTABLE PACE";
             String longDistanceJog = "LONG DISTANCE JOG";
             model.addAttribute("username", user.toUpperCase());
+            model.addAttribute("date", (new Date()).toString());
             model.addAttribute("workoutList", reverseWorkout);
             model.addAttribute("fastrun", intervals);
             model.addAttribute("modrun", uncomfortablePace);

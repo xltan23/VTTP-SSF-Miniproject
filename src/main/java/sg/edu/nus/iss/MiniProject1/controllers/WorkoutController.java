@@ -77,6 +77,7 @@ public class WorkoutController {
         workSumSvc.save(user, ws);
 
         model.addAttribute("username", user);
+        model.addAttribute("date", (new Date()).toString());
         model.addAttribute("workoutList", workoutList);
         model.addAttribute("workoutSummary", ws);
         return "summary";

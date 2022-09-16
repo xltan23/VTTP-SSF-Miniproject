@@ -281,7 +281,6 @@ public class WorkoutService {
         staticWorkout.add("CRUNCHES");
         staticWorkout.add("LEG THRUST");
         staticWorkout.add("RUSSIAN TWIST");
-        staticWorkout.add("MOUNTAIN CLIMBERS");
         return staticWorkout;
     }
 
@@ -305,7 +304,6 @@ public class WorkoutService {
         List<String> staticWorkout = new LinkedList<>();
         staticWorkout.add("BICYCLE CRUNCHES");
         staticWorkout.add("FLUTTER KICKS");
-        staticWorkout.add("SUPERMAN BACK");
         staticWorkout.add("JUMPING JACKS");
         return staticWorkout;
     }
@@ -330,7 +328,6 @@ public class WorkoutService {
         List<String> staticWorkout = new LinkedList<>();
         staticWorkout.add("PUSH-UP");
         staticWorkout.add("SIT-UP");
-        staticWorkout.add("LEG RAISE");
         staticWorkout.add("JACK KNIVES");
         return staticWorkout;
     }

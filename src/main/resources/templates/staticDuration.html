@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Duration</title>
+    <title>Static Duration List</title>
     <link rel="stylesheet" data-th-href="@{/css/workout.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
@@ -50,9 +50,9 @@
                             <div class="table-workout-center">
                                 <div class="table-workout-div">
                                     <img data-th-src="@{/images/Timer Icon.jpg}" alt="" width="30px" height="30px">
-                                    <span data-th-text="${workout.duration}"></span>
+                                    <span data-th-text="${workout.duration}"></span>s
                                     <img data-th-src="@{/images/Repetition Icon.jpg}" alt="" width="30px" height="30px">
-                                    <span data-th-text="${workout.repetition}"></span>
+                                    <span data-th-text="${workout.repetition}"></span>x
                                     <img data-th-src="@{/images/Sets Icon.jpg}" alt="" width="30px" height="30px">
                                     <span data-th-text="${workout.sets}"></span>
                                     <img data-th-src="@{/images/Intensity Icon.jpg}" alt="" width="30px" height="30px">

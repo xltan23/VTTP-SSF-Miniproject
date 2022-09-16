@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.MiniProject1.controllers;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class StaticRepetitionController {
             List<String> staticWorkout3 = workSvc.getStaticRepetition3();
             List<String> staticWorkout4 = workSvc.getStaticRepetition4();
             model.addAttribute("username", user.toUpperCase());
+            model.addAttribute("date", (new Date()).toString());
             model.addAttribute("workoutList", reverseWorkout);
             model.addAttribute("staticWorkout1", staticWorkout1);
             model.addAttribute("staticWorkout2", staticWorkout2);

@@ -1,3 +1,12 @@
+h1 {
+    margin-top: -0.5px;
+    margin-bottom: -1px;
+}
+
+h2 {
+    font-family: 'Quicksand', sans-serif;
+}
+
 h5 {
     margin-top: -0.5px;
     margin-bottom: -1px;
@@ -156,6 +165,7 @@ h5 {
     align-items: center;
     border-radius: 30px;
     background-color: black;
+    color: white;
 }
 
 .return-container img {
@@ -237,6 +247,10 @@ h5 {
     margin-top: 10px;
 }
 
+.light-row {
+    background-color: lightgoldenrodyellow;
+}
+
 .moderate-row {
     background-color: rgb(255,242,0);
 }
@@ -254,7 +268,84 @@ h5 {
     margin-left: 40px;
 }
 
+.summary-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 70px;
+}
+
+.workout-summary-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: black;
+    color: aliceblue;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.workout-summary-container img {
+    margin-right: 30px;
+    border-radius: 30px;
+}
+
+.table-summary-container {
+    display: flex;
+    justify-content: center;
+    background-color: lightskyblue;
+    height: 40px;
+}
+
+.table-summary-center {
+    display: flex;
+    height: 70px;
+    text-align: center;
+    align-items: center;
+    background-color: lightcyan;
+}
+
+.table-summary-div {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
+
+.table-summary-div img {
+    margin-left: 90px;
+    border-radius: 50px;
+}
+
+.eat-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.time-to-eat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    border-radius: 30px;
+    background-color: lightseagreen;
+    color: black;
+}
+
+.time-to-eat-container img {
+    margin-right: 30px;
+    border-radius: 30px;
+}
+
 #duration {
+    width: 61px;
+}
+
+#repetition {
+    width: 51px;
+}
+
+#distance {
     width: 61px;
 }
 

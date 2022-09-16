@@ -3,25 +3,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout Summary</title>
+    <title>R.EA.L. Workout Summary</title>
+    <link rel="stylesheet" data-th-href="@{/css/workout.css}">
 </head>
+<marquee behavior="" direction="" style="background-color: black; color: white;">
+    <span data-th-text="${username}"></span>, Your workout summary
+</marquee>
 <body>
-    <a data-th-href="@{/food/{user}(user=${username})}">TIME TO EAT</a>
-    <div data-th-each="workout:${workoutList}">
-        <span data-th-text="${workout.name}"></span>
-        <span data-th-text="${workout.duration}"></span>
-        <span data-th-text="${workout.repetition}"></span>
-        <span data-th-text="${workout.sets}"></span>
-        <span data-th-text="${workout.intensity}"></span>
-    </div>
+    <h5 class="top-right"><span data-th-text="${date}"></span></h5>
+    
+    <div class="summary-container">
+        <a data-th-href="@{/home?user={user}(user=${username})}">
+            <img data-th-src="@{/images/Application Logo.png}" alt="" height="150px">
+        </a>
+    </div>  
 
-    <div>
-        <span data-th-text="${workoutSummary.name}"></span>
-        <span data-th-text="${workoutSummary.time}"></span>
-        <span data-th-text="${workoutSummary.totalIntensity}"></span>
-        <span data-th-text="${workoutSummary.caloriesBurnt}"></span>
-        <span data-th-text="${workoutSummary.recProtein}"></span>
-        <span data-th-text="${workoutSummary.recCarbs}"></span>
+    <div class="workout-summary-container">
+        <img data-th-src="@{/images/Workout Icon.jpg}" alt="" height="30px">
+        <h4>Workout Summary</h4>
+    </div>   
+
+    <div class="table-summary-container">
+        <h1><span data-th-text="${workoutSummary.name}"></span></h1>
     </div>
+    <div class="table-summary-center">
+        <div class="table-summary-div">
+            <img data-th-src="@{/images/Intensity Icon.jpg}" alt="" width="50px" height="50px">
+            Total Intensity: &nbsp;
+            <span data-th-text="${workoutSummary.totalIntensity}"></span>
+            <img data-th-src="@{/images/CaloriesBurnt Icon.jpg}" alt="" width="50px" height="50px">
+            Calories Burnt: &nbsp;
+            <span data-th-text="${workoutSummary.caloriesBurnt}"></span>kcal
+            <img data-th-src="@{/images/Protein Icon.jpg}" alt="" width="50px" height="50px">
+            Recommended Protein: &nbsp;
+            <span data-th-text="${workoutSummary.recProtein}"></span>g
+            <img data-th-src="@{/images/Carbs Icon.jpg}" alt="" width="50px" height="50px">
+            Recommended Carbs: &nbsp;
+            <span data-th-text="${workoutSummary.recCarbs}"></span>g
+        </div>     
+    </div> 
+
+    <a class="text-decoration" data-th-href="@{/food/{user}(user=${username})}">
+        <div class="eat-container">
+            <div class="time-to-eat-container">
+                <img data-th-src="@{/images/Food Icon.jpg}" alt="" height="30px">
+                <h4>Time to eat!</h4>
+            </div>
+        </div>
+    </a>
 </body>
 </html>
