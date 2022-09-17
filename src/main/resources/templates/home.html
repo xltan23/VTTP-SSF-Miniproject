@@ -10,7 +10,7 @@
     <span data-th-if="${hour le 12}">Good morning, <span data-th-text="${username}"></span>. Time to workout!</span>
     <span data-th-unless="${hour le 12}">Good afternoon, <span data-th-text="${username}"></span>. Time to workout!</span>
 </marquee>
-<body>
+<body background="./images/Gym Background.jpg" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
     <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     <div class="top-right2"><a class="text-decoration" data-th-href="@{/}">Log out</a></div>
 
@@ -42,7 +42,7 @@
         <table>
             <tr>
                 <td>
-                    <div class="mini-container">
+                    <div class="mini-container1">
                         <img src="./images/Intensity Icon.jpg" alt="" width="50px" height="50px">
                         <span class="span-it">Intensity  &nbsp;</span>
                         <img src="./images/CaloriesBurnt Icon.jpg" alt="" width="50px" height="50px">
@@ -54,7 +54,7 @@
                     </div>
                 </td>
                 <td>
-                    <div class="mini-container">
+                    <div class="mini-container2">
                         <img src="./images/Calories Icon.jpg" alt="" width="50px" height="50px">
                         <span class="span-it">Calories &nbsp;</span>
                         <img src="./images/Milk Icon.jpg" alt="" width="50px" height="50px">

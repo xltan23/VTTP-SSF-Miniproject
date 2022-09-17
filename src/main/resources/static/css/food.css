@@ -25,6 +25,7 @@ h5 {
 
 .home-container img {
     margin-right: 50px;
+    border-radius: 30px;
 }
 
 .center-it-message {
@@ -61,6 +62,12 @@ h5 {
     display: flex;
     justify-content: center;
     padding: 5px;
+    background-color: lightseagreen;
+    border-radius: 30px;
+}
+
+.center-it-form input {
+    background-color: aquamarine;
 }
 
 .form-div {
@@ -150,6 +157,10 @@ h5 {
     align-items: center;
     padding: 20px;
     background-color: transparent;
+}
+
+.full-container img {
+    border-radius: 30px;
 }
 
 .save-heading {

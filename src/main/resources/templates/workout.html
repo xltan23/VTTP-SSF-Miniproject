@@ -7,9 +7,9 @@
     <link rel="stylesheet" data-th-href="@{/css/workout.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
-    <span data-th-text="${username}"></span>, Time for REAL workout
+    <span data-th-text="${username}"></span>, Time for REAL workout. (Press the logo to return home)
 </marquee>
-<body>
+<body data-th-background="@{/images/Gym Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)" >
     <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     
     <div class="home-container">

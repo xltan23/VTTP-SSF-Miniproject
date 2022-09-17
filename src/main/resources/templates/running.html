@@ -7,9 +7,9 @@
     <link rel="stylesheet" data-th-href="@{/css/workout.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
-    KEEP RUNNING, DO NOT STOP! <span data-th-text="${username}"></span>
+    KEEP RUNNING, DO NOT STOP! <span data-th-text="${username}"></span>. (Press the logo to return home)
 </marquee>
-<body>
+<body data-th-background="@{/images/Running Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
     <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     
     <div class="home-container">
@@ -69,7 +69,7 @@
                         <td>
                             <div class="form-container">
                                 <div class="image2">
-                                    <img data-th-src="@{/images/Plank Icon.jpg}" alt="" width="130px" height="130px">
+                                    <img data-th-src="@{/images/INTERVALS.jpg}" alt="" width="130px" height="130px">
                                     <div class="image2-overlay">
                                         <div class="image2-title">INTERVALS</div>
                                         <p class="image2-description">Short distance + High speed</p>
@@ -113,7 +113,7 @@
                         <td>
                             <div class="form-container">
                                 <div class="image2">
-                                    <img data-th-src="@{/images/Plank Icon.jpg}" alt="" width="130px" height="130px">
+                                    <img data-th-src="@{/images/UNCOMFORTABLE.jpg}" alt="" width="130px" height="130px">
                                     <div class="image2-overlay">
                                         <div class="image2-title">UNCOMFORTABLE</div>
                                         <p class="image2-description">For moderate distance</p>
@@ -152,7 +152,7 @@
                         <td>
                             <div class="form-container">
                                 <div class="image2">
-                                    <img data-th-src="@{/images/Plank Icon.jpg}" alt="" width="130px" height="130px">
+                                    <img data-th-src="@{/images/LONG DISTANCE JOG.jpg}" alt="" width="130px" height="130px">
                                     <div class="image2-overlay">
                                         <div class="image2-title">LONG DISTANCE JOG</div>
                                         <p class="image2-description">Long distance + Low speed</p>

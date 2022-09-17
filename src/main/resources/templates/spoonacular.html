@@ -7,9 +7,9 @@
     <link rel="stylesheet" data-th-href="@{/css/food.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
-    <span data-th-text="${username}"></span>, select any food from SPOONACULAR to meet your dietary needs!
+    <span data-th-text="${username}"></span>, select any food from SPOONACULAR to meet your dietary needs! (Press the logo to return home)
 </marquee>
-<body>
+<body data-th-background="@{/images/Food2 Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
     <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     
     <div class="full-container">
@@ -19,7 +19,9 @@
         <div>
             <span>In Partnership with</span>
         </div>
-        <img data-th-src="@{/images/Spoonacular Icon.jpg}" alt="" height="100px">
+        <a href="https://spoonacular.com/">
+            <img data-th-src="@{/images/Spoonacular Icon.jpg}" alt="" height="100px">
+        </a>
     </div>
 
     <div class="center-it-message">

@@ -33,6 +33,11 @@ h5 {
     display: flex;
     justify-content: center;
     padding-top: 100px;
+    margin-bottom: 30px;
+}
+
+.center-img img {
+    border-radius: 30px;
 }
 
 .center-it {
@@ -100,14 +105,25 @@ h5 {
     margin-top: 0.25em;
 }
 
-.mini-container {
+.mini-container1 {
     display: flex;
     align-items: center;
     background-color: pink;
 }
 
-.mini-container img {
+.mini-container1 img {
     margin-right: 3px;
+    border-radius: 50px;
+}
+
+.mini-container2 {
+    display: flex;
+    align-items: center;
+    background-color: pink;
+}
+
+.mini-container2 img {
+    margin-left: 45px;
     border-radius: 50px;
 }
 
@@ -143,7 +159,7 @@ h5 {
 }
 
 .table-workout-div img {
-    margin-left: 50px;
+    margin-left: 40px;
     margin-right: 3px;
     border-radius: 50px;
 }

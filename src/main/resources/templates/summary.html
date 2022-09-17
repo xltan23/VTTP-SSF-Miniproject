@@ -7,9 +7,9 @@
     <link rel="stylesheet" data-th-href="@{/css/workout.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
-    <span data-th-text="${username}"></span>, Your workout summary
+    <span data-th-text="${username}"></span>, Your workout summary. (Press the logo to return home)
 </marquee>
-<body>
+<body data-th-background="@{/images/Running Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
     <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     
     <div class="summary-container">

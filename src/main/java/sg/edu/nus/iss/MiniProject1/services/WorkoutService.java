@@ -231,7 +231,7 @@ public class WorkoutService {
         List<String> staticWorkout = new LinkedList<>();
         staticWorkout.add("(W) PLANK");
         staticWorkout.add("PUSH-UP HOLD");
-        staticWorkout.add("V-MAN");
+        staticWorkout.add("V-UP HOLD");
         return staticWorkout;
     }
 

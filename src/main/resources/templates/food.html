@@ -7,9 +7,9 @@
     <link rel="stylesheet" data-th-href="@{/css/food.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
-    <span data-th-text="${username}"></span>'s REAL Food Archive
+    <span data-th-text="${username}"></span>'s REAL Food Archive. (Press the logo to return home)
 </marquee>
-<body>
+<body data-th-background="@{/images/Food1 Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
     <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     
     <div class="home-container">
@@ -64,7 +64,7 @@
                             <input type="text" name="maxFat" size="22" data-th-value="${maxFats}" required>
                         </div>
                         <div class="form-div">
-                            <input type="image" data-th-src="@{/images/Submit Icon.png}" alt="Submit" style="float:right" width="50px" height="50px">
+                            <input type="image" data-th-src="@{/images/Submit Icon.jpg}" alt="Submit" style="float:right" width="50px" height="50px">
                         </div>        
                     </form>
                 </div>

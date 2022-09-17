@@ -7,9 +7,9 @@
     <link rel="stylesheet" data-th-href="@{/css/workout.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
-    KEEP GOING, DO NOT STOP! <span data-th-text="${username}"></span>
+    KEEP GOING, DO NOT STOP! <span data-th-text="${username}"></span>. (Press the logo to return home)
 </marquee>
-<body>
+<body data-th-background="@{/images/Gym Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
     <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     
     <div class="home-container">
@@ -69,7 +69,7 @@
                         <td data-th-each="static1:${staticWorkout1}">
                             <div class="form-container">
                                 <div class="image2">
-                                    <img data-th-src="@{/images/Plank Icon.jpg}" alt="" width="130px" height="130px">
+                                    <img data-th-src="@{/images/{workout}.jpg(workout=${static1})}" alt="" width="130px" height="130px">
                                     <div class="image2-overlay">
                                         <div class="image2-title"><span data-th-text="${static1}"></span></div>
                                         <p class="image2-description">Light Intensity</p>
@@ -110,7 +110,7 @@
                         <td data-th-each="static2:${staticWorkout2}">
                             <div class="form-container">
                                 <div class="image2">
-                                    <img data-th-src="@{/images/Plank Icon.jpg}" alt="" width="130px" height="130px">
+                                    <img data-th-src="@{/images/{workout}.jpg(workout=${static2})}" alt="" width="130px" height="130px">
                                     <div class="image2-overlay">
                                         <div class="image2-title"><span data-th-text="${static2}"></span></div>
                                         <p class="image2-description">Moderate Intensity</p>
@@ -151,7 +151,7 @@
                         <td data-th-each="static3:${staticWorkout3}">
                             <div class="form-container">
                                 <div class="image2">
-                                    <img data-th-src="@{/images/Plank Icon.jpg}" alt="" width="130px" height="130px">
+                                    <img data-th-src="@{/images/{workout}.jpg(workout=${static3})}" alt="" width="130px" height="130px">
                                     <div class="image2-overlay">
                                         <div class="image2-title"><span data-th-text="${static3}"></span></div>
                                         <p class="image2-description">High Intensity</p>
@@ -193,7 +193,7 @@
                         <td data-th-each="static4:${staticWorkout4}">
                             <div class="form-container">
                                 <div class="image2">
-                                    <img data-th-src="@{/images/Plank Icon.jpg}" alt="" width="130px" height="130px">
+                                    <img data-th-src="@{/images/{workout}.jpg(workout=${static4})}" alt="" width="130px" height="130px">
                                     <div class="image2-overlay">
                                         <div class="image2-title"><span data-th-text="${static4}"></span></div>
                                         <p class="image2-description">Extreme Intensity</p>
