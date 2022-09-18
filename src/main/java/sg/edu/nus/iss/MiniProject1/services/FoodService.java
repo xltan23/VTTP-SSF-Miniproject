@@ -128,7 +128,7 @@ public class FoodService {
     }
 
     // List to JsonArray method that supports up to 10 entries
-    private String listToJson(List<Food> list) {
+    public String listToJson(List<Food> list) {
         int size = list.size();
         String newPayload = "";
         switch(size) {

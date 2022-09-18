@@ -74,7 +74,7 @@ public class WorkoutSumService {
     }
 
     // List to JsonArray method that supports up to 10 entries
-    private String listToJson(List<WorkoutSummary> list) {
+    public String listToJson(List<WorkoutSummary> list) {
         int size = list.size();
         String newPayload = "";
         switch(size) {
