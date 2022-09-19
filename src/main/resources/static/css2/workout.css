@@ -39,10 +39,15 @@ h5 {
     margin-bottom: 5px;
 }
 
+.summary-div img {
+    margin-bottom: 15px;
+}
+
 .navi-div {
     border-radius: 30px;
     padding-top: 3px;
     padding-bottom: 3px;
+    margin-bottom: 10px;
 }
 
 /* .end-workout {
@@ -59,6 +64,13 @@ h5 {
 .navi-div img {
     margin-left: 10px;
     margin-right: 10px;
+}
+.end-div {
+    width: 500px;
+    border-radius: 40px;
+    padding: 20px;
+    background-color: lightseagreen;
+    margin-top: 30px;
 }
 
 .heading-div {
@@ -395,6 +407,7 @@ h5 {
 
 #distance {
     width: 61px;
+    font-size: small;
 }
 
 #sets {
