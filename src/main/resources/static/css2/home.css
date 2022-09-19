@@ -1,4 +1,4 @@
-h1 {
+/* h1 {
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -27,9 +27,9 @@ h5 {
     background-color: palevioletred;
     text-decoration: none;
     font-weight: bold;
-}
+} */
 
-.center-img {
+/* .center-img {
     display: flex;
     justify-content: center;
     padding-top: 100px;
@@ -52,6 +52,12 @@ h5 {
     justify-content: space-between;
     padding: 20px;
     background-color: transparent;
+} */
+
+.home-div {
+    width: 1100px;
+    border-radius: 30px;
+    margin-bottom: 10px;
 }
 
 .image {
@@ -105,7 +111,7 @@ h5 {
     margin-top: 0.25em;
 }
 
-.mini-container1 {
+/* .mini-container1 {
     display: flex;
     align-items: center;
     background-color: pink;
@@ -125,67 +131,68 @@ h5 {
 .mini-container2 img {
     margin-left: 45px;
     border-radius: 50px;
-}
+} */
 
 .span-it {
     margin-right: 2px;
+    font-style: italic;
 }
 
-.table-workout {
+/* .table-workout {
     table-layout: fixed;
     width: 540px;
+} */
+
+.italicize {
+    font-style: italic;
 }
 
 .table-workout-container {
     display: flex;
     justify-content: space-between;
     background-color: lightskyblue;
-    height: 18px;
-    padding: 2px;
+    height: 25px;
 }
 
 .table-workout-center {
     display: flex;
-    height: 70px;
-    text-align: center;
     align-items: center;
+    height: 30px;
     background-color: lightcyan;
 }
 
-.table-workout-div {
+/* .table-workout-div {
     display: flex;
     align-items: center;
     background-color: transparent;
-}
+} */
 
-.table-workout-div img {
-    margin-left: 40px;
-    margin-right: 3px;
+.table-workout-center img {
+    margin-left: 80px;
     border-radius: 50px;
 }
 
-.table-food {
+/* .table-food {
     table-layout: fixed;
-    width: 675px;
-}
+    width: 700px;
+} */
 
 .table-food-container1 {
     display: flex;
     justify-content: space-between;
     background-color: lightseagreen;
-    height: 18px;
-    padding: 2px;
+    height: 20px;
 }
 
 .table-food-container2 {
     display: flex;
     align-items: center;
-    height: 70px;
+    height: 60px;
     background-color: aquamarine;
 }
 
 #food-id {
-    height: 70px;
+    height: 60px;
 }
 
 .table-food-center {
@@ -201,7 +208,7 @@ h5 {
 }
 
 .table-food-div img {
-    margin-left: 50px;
+    margin-left: 40px;
     margin-right: 3px;
     border-radius: 50px;
 }

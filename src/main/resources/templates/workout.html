@@ -4,13 +4,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R.EA.L. Time to workout</title>
-    <link rel="stylesheet" data-th-href="@{/css/workout.css}">
+    <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" data-th-href="@{/css2/workout.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
     <span data-th-text="${username}"></span>, Time for REAL workout. (Press the logo to return home)
 </marquee>
 <body data-th-background="@{/images/Gym Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)" >
-    <h5 class="top-right"><span data-th-text="${date}"></span></h5>
+    <!-- <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     
     <div class="home-container">
         <a data-th-href="@{/home?user={user}(user=${username})}">
@@ -98,6 +99,89 @@
                 </td>
             </tr>
         </table>
+    </div> -->
+
+    <h6 class="text-end"><span data-th-text="${date}"></span></h6>
+    <a class="text-decoration-none" data-th-href="@{/}"><h6 class="text-end">Log out</h6></a>
+
+    <div class="container text-start home-div">
+            <a data-th-href="@{/home?user={user}(user=${username})}">
+                <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
+            </a>
+            <span class="display-6">Rest EAt Lift</span>
+    </div>
+
+    <div class="container text-center bg-black text-white navi-div">
+        <form action="/workout/summary" method="POST">
+            <input type="hidden" name="user" data-th-value="${username}">
+            <label for="workoutName"><span class="end-workout-text">End workout?</span></label>
+            <input type="text" id="end-workout-text" name="workoutName" placeholder="Name your workout session" size="30" required>
+            <input type="image" data-th-src="@{/images/Workout Submit Icon.jpg}" alt="Submit" width="20px" height="30px">
+        </form>
+    </div>
+
+    <div class="container text-center">
+        <div class="container row">
+            <div class="col-5 heading-div">
+                <span>Your workout session so far:</span>
+            </div>
+            <div class="col heading-div">
+                <span>Choose your workout!</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <div class="container row">
+            <div class="col-5">
+                <div class="container row" data-th-each="workout:${workoutList}">
+                    <div class="table-name-container">
+                        <h6 data-th-text="${workout.name}"></h6>
+                    </div>
+                    <div class="table-info-container">
+                        <img data-th-src="@{/images/Timer Icon.jpg}" alt="" width="30px" height="30px">
+                        <span data-th-text="${workout.duration}"></span>
+                        <img data-th-src="@{/images/Repetition Icon.jpg}" alt="" width="30px" height="30px">
+                        <span data-th-text="${workout.repetition}"></span>
+                        <img data-th-src="@{/images/Sets Icon.jpg}" alt="" width="30px" height="30px">
+                        <span data-th-text="${workout.sets}"></span>
+                        <img data-th-src="@{/images/Intensity Icon.jpg}" alt="" width="30px" height="30px">
+                        <span data-th-text="${workout.intensity}"></span>
+                    </div>    
+                </div>
+            </div>
+            <div class="col">
+                <div class="container text-center row workout-div">
+                    <div class="col image">
+                        <a data-th-href="@{/workout/static-duration/{user}(user=${username})}">
+                            <img data-th-src="@{/images/Plank Icon.jpg}" alt="" width="150px" height="150px">
+                            <div class="image-overlay">
+                                <div class="image-title">Static Duration</div>
+                                <p class="image-description">Time-based Workout</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col image">
+                        <a data-th-href="@{/workout/static-repetition/{user}(user=${username})}">
+                            <img data-th-src="@{/images/Crunches Icon.jpg}" alt="" width="150px" height="150px">
+                            <div class="image-overlay">
+                                <div class="image-title">Static Repetition</div>
+                                <p class="image-description">Movement repetition</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col image">
+                        <a data-th-href="@{/workout/running/{user}(user=${username})}">
+                            <img data-th-src="@{/images/Running Icon.jpg}" alt="" width="150px" height="150px">
+                            <div class="image-overlay">
+                                <div class="image-title">Running</div>
+                                <p class="image-description">Pure Cardio</p>
+                            </div>
+                        </a>
+                    </div>  
+                </div>
+            </div>
+        </div>
     </div>
 
 

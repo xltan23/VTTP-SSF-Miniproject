@@ -4,13 +4,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Running List</title>
-    <link rel="stylesheet" data-th-href="@{/css/workout.css}">
+    <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" data-th-href="@{/css2/workout.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
     KEEP RUNNING, DO NOT STOP! <span data-th-text="${username}"></span>. (Press the logo to return home)
 </marquee>
 <body data-th-background="@{/images/Running Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
-    <h5 class="top-right"><span data-th-text="${date}"></span></h5>
+    <!-- <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     
     <div class="home-container">
         <a data-th-href="@{/home?user={user}(user=${username})}">
@@ -185,6 +186,8 @@
                 </table>
             </td>
         </tr>
-    </table>
+    </table> -->
+
+    
 </body>
 </html>

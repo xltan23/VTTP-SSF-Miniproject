@@ -4,13 +4,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Static Duration List</title>
-    <link rel="stylesheet" data-th-href="@{/css/workout.css}">
+    <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" data-th-href="@{/css2/workout.css}">
 </head>
 <marquee behavior="" direction="" style="background-color: black; color: white;">
     HOLD IT THERE! <span data-th-text="${username}"></span>. (Press the logo to return home)
 </marquee>
 <body data-th-background="@{/images/Gym Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
-    <h5 class="top-right"><span data-th-text="${date}"></span></h5>
+    <!-- <h5 class="top-right"><span data-th-text="${date}"></span></h5>
     
     <div class="home-container">
         <a data-th-href="@{/home?user={user}(user=${username})}">
@@ -194,6 +195,187 @@
                 </table>
             </td>
         </tr>
-    </table>
+    </table> -->
+
+    <h6 class="text-end"><span data-th-text="${date}"></span></h6>
+    <a class="text-decoration-none" data-th-href="@{/}"><h6 class="text-end">Log out</h6></a>
+
+    <div class="container text-start home-div">
+            <a data-th-href="@{/home?user={user}(user=${username})}">
+                <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
+            </a>
+            <span class="display-6">Rest EAt Lift</span>
+    </div>
+
+
+    <a class="text-decoration-none" data-th-href="@{/workout/{user}(user=${username})}">
+        <div class="container text-center bg-black text-white navi-div">
+            <img class="rounded-circle" data-th-src="@{/images/Workout Icon.jpg}" alt="" height="30px">
+            <span>Select other workout OR End workout</span>
+        </div>   
+    </a>
+
+    <div class="container text-center">
+        <div class="container row">
+            <div class="col-5 heading-div">
+                <span>Your workout session so far:</span>
+            </div>
+            <div class="col heading-div">
+                <span>Select your workout duration and sets</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center">
+        <div class="container row">
+            <div class="col-5">
+                <div class="container row" data-th-each="workout:${workoutList}">
+                    <div class="table-name-container">
+                        <h6 data-th-text="${workout.name}"></h6>
+                    </div>
+                    <div class="table-info-container">
+                        <img data-th-src="@{/images/Timer Icon.jpg}" alt="" width="30px" height="30px">
+                        <span data-th-text="${workout.duration}"></span>
+                        <img data-th-src="@{/images/Repetition Icon.jpg}" alt="" width="30px" height="30px">
+                        <span data-th-text="${workout.repetition}"></span>
+                        <img data-th-src="@{/images/Sets Icon.jpg}" alt="" width="30px" height="30px">
+                        <span data-th-text="${workout.sets}"></span>
+                        <img data-th-src="@{/images/Intensity Icon.jpg}" alt="" width="30px" height="30px">
+                        <span data-th-text="${workout.intensity}"></span>
+                    </div>    
+                </div>
+            </div>
+            <div class="col">
+                <div class="container row moderate-row">
+                    <div class="col" data-th-each="static1:${staticWorkout1}">
+                        <div class="container text-center">
+                            <div class="image2">
+                                <img data-th-src="@{/images/{workout}.jpg(workout=${static1})}" alt="" width="130px" height="130px">
+                                <div class="image2-overlay">
+                                    <div class="image2-title"><span data-th-text="${static1}"></span></div>
+                                    <p class="image2-description">Moderate Intensity</p>
+                                </div>
+                            </div>
+                            <div>
+                                <form action="/workout/static-duration/save1" method="POST">
+                                    <input type="hidden" name="user" data-th-value="${username}">
+                                    <label for="staticName1"><span class="form-small-font" data-th-text="${static1}"></span></label>
+                                    <input type="hidden" name="staticName1" data-th-value="${static1}">
+                                    <div>
+                                        <label for="duration"><small>Duration</small></label>
+                                        <select name="duration" id="duration">
+                                            <option value="30">30s</option>
+                                            <option value="45">45s</option>
+                                            <option value="60">60s</option>
+                                            <option value="75">75s</option>
+                                            <option value="90">90s</option>
+                                            <option value="100">>105s</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="sets"><small>Set Count</small></label>
+                                        <select name="sets" id="sets">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <input class="add-image" type="image" data-th-src="@{/images/Moderate Add Icon.jpg}" alt="Submit" width="40px" height="30px">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container row high-row">
+                    <div class="col" data-th-each="static2:${staticWorkout2}">
+                        <div class="container text-center ">
+                            <div class="image2">
+                                <img data-th-src="@{/images/{workout}.jpg(workout=${static2})}" alt="" width="130px" height="130px">
+                                <div class="image2-overlay">
+                                    <div class="image2-title"><span data-th-text="${static2}"></span></div>
+                                    <p class="image2-description">High Intensity</p>
+                                </div>
+                            </div>
+                            <div>
+                                <form action="/workout/static-duration/save2" method="POST">
+                                    <input type="hidden" name="user" data-th-value="${username}">
+                                    <label for="staticName2"><span class="form-small-font" data-th-text="${static2}"></span></label>
+                                    <input type="hidden" name="staticName2" data-th-value="${static2}">
+                                    <div>
+                                        <label for="duration"><small>Duration</small></label>
+                                        <select name="duration" id="duration">
+                                            <option value="20">20s</option>
+                                            <option value="30">30s</option>
+                                            <option value="40">40s</option>
+                                            <option value="50">50s</option>
+                                            <option value="60">60s</option>
+                                            <option value="75">>75s</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="sets"><small>Set Count</small></label>
+                                        <select name="sets" id="sets">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <input class="add-image" type="image" data-th-src="@{/images/High Add Icon.jpg}" alt="Submit" width="40px" height="30px">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container row extreme-row">
+                    <div class="col" data-th-each="static3:${staticWorkout3}">
+                        <div class="container text-center ">
+                            <div class="image2">
+                                <img data-th-src="@{/images/{workout}.jpg(workout=${static3})}" alt="" width="130px" height="130px">
+                                <div class="image2-overlay">
+                                    <div class="image2-title"><span data-th-text="${static3}"></span></div>
+                                    <p class="image2-description">Extreme Intensity</p>
+                                </div>
+                            </div>
+                            <div>
+                                <form action="/workout/static-duration/save3" method="POST">
+                                    <input type="hidden" name="user" data-th-value="${username}">
+                                    <label for="staticName3"><span class="form-small-font" data-th-text="${static3}"></span></label>
+                                    <input type="hidden" name="staticName3" data-th-value="${static3}">
+                                    <div>
+                                        <label for="duration"><small>Duration</small></label>
+                                        <select name="duration" id="duration">
+                                            <option value="20">20s</option>
+                                            <option value="30">30s</option>
+                                            <option value="40">40s</option>
+                                            <option value="50">50s</option>
+                                            <option value="60">60s</option>
+                                            <option value="75">>75s</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="sets"><small>Set Count</small></label>
+                                        <select name="sets" id="sets">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <input class="add-image" type="image" data-th-src="@{/images/Extreme Add Icon.jpg}" alt="Submit" width="40px" height="30px">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </body>
 </html>
