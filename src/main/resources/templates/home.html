@@ -13,10 +13,11 @@
 </marquee>
 <body background="./images/Gym Background.jpg" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
 
+    <!-- Date/Time and Log out positioned at top right corner -->
     <h6 class="text-end"><span data-th-text="${date}"></span></h6>
     <a class="text-decoration-none" data-th-href="@{/}"><h6 class="text-end">Log out</h6></a>
-
-    <div class="container text-center bg-white home-div">
+    <!-- Home container -->
+    <div class="container text-center bg-white mb-3 home-div">
         <div class="container row">
             <div class="col image">
                 <a data-th-href="@{/workout/{user}(user=${username})}">
@@ -41,72 +42,73 @@
             </div>   
         </div>   
     </div>
-
-    <div class="container text-center bg-dark text-white home-div">
+    <!-- Legends container -->
+    <div class="container text-center bg-dark text-white mb-3 home-div">
         <img class="rounded-circle" src="./images/Intensity Icon.jpg" alt="" width="30px" height="30px">
-        <span class="span-it">Intensity  &nbsp;</span>
+        <span class="italicize">Intensity  &nbsp;</span>
         <img class="rounded-circle" src="./images/CaloriesBurnt Icon.jpg" alt="" width="30px" height="30px">
-        <span class="span-it">Calories Burnt  &nbsp;</span>
+        <span class="italicize">Calories Burnt  &nbsp;</span>
         <img class="rounded-circle" src="./images/Protein Icon.jpg" alt="" width="30px" height="30px">
-        <span class="span-it">Rec. Protein  &nbsp;</span>
+        <span class="italicize">Rec. Protein  &nbsp;</span>
         <img class="rounded-circle" src="./images/Carbs Icon.jpg" alt="" width="30px" height="30px">
-        <span class="span-it">Rec. Carbs  &nbsp;</span>
+        <span class="italicize">Rec. Carbs  &nbsp;</span>
         <img class="rounded-circle" src="./images/Calories Icon.jpg" alt="" width="30px" height="30px">
-        <span class="span-it">Calories &nbsp;</span>
+        <span class="italicize">Calories &nbsp;</span>
         <img class="rounded-circle" src="./images/Milk Icon.jpg" alt="" width="30px" height="30px">
-        <span class="span-it">Protein &nbsp;</span>
+        <span class="italicize">Protein &nbsp;</span>
         <img class="rounded-circle" src="./images/Rice Icon.jpg" alt="" width="30px" height="30px">
-        <span class="span-it">Carbohydrates &nbsp;</span>
+        <span class="italicize">Carbohydrates &nbsp;</span>
         <img class="rounded-circle" src="./images/Fats Icon.jpg" alt="" width="30px" height="30px">
-        <span class="span-it">Fats</span>
+        <span class="italicize">Fats</span>
     </div>
-
+    <!-- Archive list for workout and food -->
     <div class="container text-center">
         <div class="container row">
+            <!-- Workout List column -->
             <div class="col-5">
                 <div class="container row" data-th-each="archive:${archiveList}">
-                    <div class="table-workout-container">
+                    <div class="workout-heading-box">
                         <h6 data-th-text="${archive.name}"></h6>
                         <small class="italicize" data-th-text="${archive.time}"></small>
                     </div>
-                    <div class="table-workout-center">
-                            <img class="rounded-circle" src="./images/Intensity Icon.jpg" alt="" width="30px" height="30px">
-                            <span data-th-text="${archive.totalIntensity}"></span>
-                            <img class="rounded-circle" src="./images/CaloriesBurnt Icon.jpg" alt="" width="30px" height="30px">
-                            <span data-th-text="${archive.caloriesBurnt}"></span>kcal
+                    <div class="workout-content-box">
+                        <img class="rounded-circle" src="./images/Intensity Icon.jpg" alt="" width="30px" height="30px">
+                        <span data-th-text="${archive.totalIntensity}"></span>
+                        <img class="rounded-circle" src="./images/CaloriesBurnt Icon.jpg" alt="" width="30px" height="30px">
+                        <span data-th-text="${archive.caloriesBurnt}"></span>kcal
                     </div>
-                    <div class="table-workout-center">
-                            <img class="rounded-circle" src="./images/Protein Icon.jpg" alt="" width="30px" height="30px">
-                            <span data-th-text="${archive.recProtein}"></span>g
-                            <img class="rounded-circle" src="./images/Carbs Icon.jpg" alt="" width="30px" height="30px">
-                            <span data-th-text="${archive.recCarbs}"></span>g
+                    <div class="workout-content-box">
+                        <img class="rounded-circle" src="./images/Protein Icon.jpg" alt="" width="30px" height="30px">
+                        <span data-th-text="${archive.recProtein}"></span>g
+                        <img class="rounded-circle" src="./images/Carbs Icon.jpg" alt="" width="30px" height="30px">
+                        <span data-th-text="${archive.recCarbs}"></span>g
                     </div>    
                 </div>
             </div>
+            <!-- Food List column -->
             <div class="col-7">
                 <div class="container row" data-th-each="food:${foodList}">
-                    <div class="table-food-container1">
+                    <div class="food-heading-box">
                         <h6 data-th-text="${food.title}"></h6>
                         <small class="italicize" data-th-text="${food.time}"></small>
                     </div>
-                    <div class="table-food-container2">
-                        <img class="text-start" id="food-id" data-th-src="@{{link}(link=${food.image})}" alt="">
-                        <div class="table-food-center">
-                            <div class="table-food-div">
-                                <img src="./images/Calories Icon.jpg" alt="" width="30px" height="30px">
-                                <span data-th-text="${food.calories}"></span>kcal
-                                <img src="./images/Milk Icon.jpg" alt="" width="30px" height="30px">
-                                <span data-th-text="${food.protein}"></span>
-                                <img src="./images/Rice Icon.jpg" alt="" width="30px" height="30px">
-                                <span data-th-text="${food.carbs}"></span>
-                                <img src="./images/Fats Icon.jpg" alt="" width="30px" height="30px">
-                                <span data-th-text="${food.fat}"></span>
-                            </div>       
-                        </div>    
+                    <div class="food-content-box">
+                        <img id="food-id" data-th-src="@{{link}(link=${food.image})}" alt="">
+                        <div class="food-content">
+                            <img src="./images/Calories Icon.jpg" alt="" width="30px" height="30px">
+                            <span data-th-text="${food.calories}"></span>kcal
+                            <img src="./images/Milk Icon.jpg" alt="" width="30px" height="30px">
+                            <span data-th-text="${food.protein}"></span>
+                            <img src="./images/Rice Icon.jpg" alt="" width="30px" height="30px">
+                            <span data-th-text="${food.carbs}"></span>
+                            <img src="./images/Fats Icon.jpg" alt="" width="30px" height="30px">
+                            <span data-th-text="${food.fat}"></span>
+                        </div>          
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </body>
 </html>

@@ -11,135 +11,28 @@
     <span data-th-text="${username}"></span>'s REAL Food Archive. (Press the logo to return home)
 </marquee>
 <body data-th-background="@{/images/Food1 Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
-    <!-- <h5 class="top-right"><span data-th-text="${date}"></span></h5>
-    
-    <div class="home-container">
-        <a data-th-href="@{/home?user={user}(user=${username})}">
-            <img data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
-        </a>
-        <h2>Rest EAt Lift</h2>
-    </div>
 
-    <div class="center-it-message" data-th-if="${!empty}">
-        <h3><span data-th-text="${username}"></span>, <span data-th-text="${message}"></span></h3>
-    </div>
-    <div class="center-it-message" data-th-if="${empty}">
-        <h3><span data-th-text="${username}"></span>, GET UP AND WORKOUT, YOU LAZY BUM!</h3>
-    </div>
-
-    <table>
-        <tr>
-            <td class="form-heading">
-                <div class="center-it-heading" data-th-if="${!empty}">
-                    <h4>Your recommended nutrients intake:</h4>
-                </div>
-                <div class="center-it-heading" data-th-if="${empty}">
-                    <h4>Your previous workout required nutrients:</h4>
-                </div>
-            </td>
-            <td class="food-heading">
-                <div class="center-it-heading">
-                    <h4>Food Archive</h4>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="center-it-form">
-                    <form action="/food/options" method="POST">
-                        <input type="hidden" name="user" data-th-value="${username}">
-                        <div class="form-div">
-                            <label for="minCalories">Optimal Calories:</label>
-                            <input type="text" name="minCalories" maxlength="4" data-th-value="${caloriesBurnt}" required>
-                        </div>
-                        <div class="form-div">
-                            <label for="minCarbs">Optimal Carbohydrates:</label>
-                            <input type="text" name="minCarbs" maxlength="2" size="14" data-th-value="${recCarbs}" required>
-                        </div>
-                        <div class="form-div">
-                            <label for="minProtein">Optimal Protein:</label>
-                            <input type="text" name="minProtein" maxlength="2" size="21" data-th-value="${recProtein}" required>
-                        </div>
-                        <div class="form-div">
-                            <label for="maxFat">Maximum Fats:</label>
-                            <input type="text" name="maxFat" size="22" data-th-value="${maxFats}" required>
-                        </div>
-                        <div class="form-div">
-                            <input type="image" data-th-src="@{/images/Submit Icon.jpg}" alt="Submit" style="float:right" width="50px" height="50px">
-                        </div>        
-                    </form>
-                </div>
-            </td>
-            <td>
-                <table>
-                    <tr data-th-each="food:${foodList}">
-                        <td>
-                            <div class="id-heading">
-                                <h5>ID</h5>
-                            </div>
-                            <div class="id-box">
-                                <span data-th-text="${food.id}"></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="table-food-container1">
-                                <h5><span data-th-text="${food.title}"></span></h5>
-                                <h5>Date: <span data-th-text="${food.time}"></span></h5>    
-                            </div>
-                            <div class="table-food-container2">
-                                <img id="food-id" data-th-src="@{{link}(link=${food.image})}" alt="">
-                                <div class="table-food-center">
-                                    <div class="table-food-div">
-                                        <img data-th-src="@{/images/Calories Icon.jpg}" alt="" width="50px" height="50px">
-                                        <span data-th-text="${food.calories}"></span>kcal
-                                        <img data-th-src="@{/images/Milk Icon.jpg}" alt="" width="50px" height="50px">
-                                        <span data-th-text="${food.protein}"></span>
-                                        <img data-th-src="@{/images/Rice Icon.jpg}" alt="" width="50px" height="50px">
-                                        <span data-th-text="${food.carbs}"></span>
-                                        <img data-th-src="@{/images/Fats Icon.jpg}" alt="" width="50px" height="50px">
-                                        <span data-th-text="${food.fat}"></span>
-                                    </div>         
-                                </div>    
-                            </div>
-                        </td>     
-                        <td>
-                            <div class="remove-heading">
-                                <h5>Remove</h5>
-                            </div>
-                            <div class="remove-box">
-                                <form action="/food/delete" method="POST">
-                                    <input type="hidden" name="user" data-th-value="${username}">
-                                    <input type="hidden" name="time" data-th-value="${food.time}">
-                                    <input type="image" data-th-src="@{/images/Remove Icon.jpg}" alt="Submit" style="float:center" width="50px" height="50px">
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table> -->
-
+    <!-- Date/Time and Log out positioned at top right corner -->
     <h6 class="text-end"><span data-th-text="${date}"></span></h6>
     <a class="text-decoration-none" data-th-href="@{/}"><h6 class="text-end">Log out</h6></a>
-
-    <div class="container text-start home-div">
-            <a data-th-href="@{/home?user={user}(user=${username})}">
-                <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
-            </a>
-            <span class="display-6">Rest EAt Lift</span>
+    <!-- Home container -->
+    <div class="container text-start mb-3 home-div">
+        <a data-th-href="@{/home?user={user}(user=${username})}">
+            <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
+        </a>
+        <span class="display-6">Rest EAt Lift</span>
     </div>
-
-    <div class="container text-center bg-black text-white navi-div" data-th-if="${!empty}">
-        <img class="rounded-circle" data-th-src="@{/images/Workout Icon.jpg}" alt="" height="30px">
+    <!-- Navigation container -->
+    <div class="container text-center bg-black text-white py-1 mb-2 navi-div" data-th-if="${!empty}">
+        <img class="rounded-circle mx-2" data-th-src="@{/images/Workout Icon.jpg}" alt="" height="30px">
         <span data-th-text="${username}"></span>, <span data-th-text="${message}"></span>
     </div>  
-    <div class="container text-center bg-black text-white navi-div" data-th-if="${empty}">
-        <img class="rounded-circle" data-th-src="@{/images/Workout Icon.jpg}" alt="" height="30px">
+    <div class="container text-center bg-black text-white py-1 mb-2 navi-div" data-th-if="${empty}">
+        <img class="rounded-circle mx-2" data-th-src="@{/images/Workout Icon.jpg}" alt="" height="30px">
         <span data-th-text="${username}"></span>, GET UP AND WORKOUT, YOU LAZY BUM!
     </div>  
-
-    <div class="container text-center">
+    <!-- Heading containers -->
+    <div class="container text-center mb-2">
         <div class="container row">
             <div class="col-4 heading-div">
                 <span data-th-if="${!empty}">Your recommended nutrients intake:</span>
@@ -150,63 +43,63 @@
             </div>
         </div>
     </div>
-
+    <!-- Form and Food list containers -->
     <div class="container text-center">
         <div class="container row">
-            <div class="col-4 my-2 form-div">
-                <div>
-                    <form action="/food/options" method="POST">
-                        <input type="hidden" name="user" data-th-value="${username}">
-                        <div class="my-3">
-                            <label for="minCalories"><small>Optimal Calories:</small></label>
-                            <input type="text" name="minCalories" maxlength="4" data-th-value="${caloriesBurnt}" required>
-                        </div>
-                        <div class="my-3">
-                            <label for="minCarbs"><small>Optimal Carbohydrates:</small></label>
-                            <input type="text" name="minCarbs" maxlength="2" size="13" data-th-value="${recCarbs}" required>
-                        </div>
-                        <div class="my-3">
-                            <label for="minProtein"><small>Optimal Protein:</small></label>
-                            <input type="text" name="minProtein" maxlength="2" size="21" data-th-value="${recProtein}" required>
-                        </div>
-                        <div class="my-3">
-                            <label for="maxFat"><small>Maximum Fats:</small></label>
-                            <input type="text" name="maxFat" size="22" data-th-value="${maxFats}" required>
-                        </div>
-                        <div class="mx-3">
-                            <input type="image" data-th-src="@{/images/Submit Icon.jpg}" alt="Submit" style="float:right" width="50px" height="50px">
-                        </div>        
-                    </form>
-                </div>
+            <!-- Form container -->
+            <div class="col-4 form-div">
+                <form action="/food/options" method="POST">
+                    <input type="hidden" name="user" data-th-value="${username}">
+                    <div class="my-3">
+                        <label for="minCalories"><small>Optimal Calories:</small></label>
+                        <input type="text" name="minCalories" maxlength="4" data-th-value="${caloriesBurnt}" required>
+                    </div>
+                    <div class="my-3">
+                        <label for="minCarbs"><small>Optimal Carbohydrates:</small></label>
+                        <input type="text" name="minCarbs" maxlength="2" size="13" data-th-value="${recCarbs}" required>
+                    </div>
+                    <div class="my-3">
+                        <label for="minProtein"><small>Optimal Protein:</small></label>
+                        <input type="text" name="minProtein" maxlength="2" size="21" data-th-value="${recProtein}" required>
+                    </div>
+                    <div class="my-3">
+                        <label for="maxFat"><small>Maximum Fats:</small></label>
+                        <input type="text" name="maxFat" size="22" data-th-value="${maxFats}" required>
+                    </div>
+                    <div class="mx-3">
+                        <input type="image" data-th-src="@{/images/Submit Icon.jpg}" alt="Submit" style="float:right" width="50px" height="50px">
+                    </div>        
+                </form>
             </div>
+            <!-- Food list container -->
             <div class="col">
                 <div class="container row" data-th-each="food:${foodList}">
+                    <!-- Food info box -->
                     <div class="col-10 text-center">
-                        <div class="table-food-container1">
+                        <div class="food-heading-box">
                             <h6 data-th-text="${food.title}"></h6>
-                            <small data-th-text="${food.time}"></small>   
+                            <small class="italicize" data-th-text="${food.time}"></small>   
                         </div>
-                        <div class="table-food-container2">
+                        <div class="food-content-box">
                             <img id="food-id" data-th-src="@{{link}(link=${food.image})}" alt="">
-                            <div class="table-food-center">
-                                <div class="table-food-div">
-                                    <img data-th-src="@{/images/Calories Icon.jpg}" alt="" width="30px" height="30px">
-                                    <span data-th-text="${food.calories}"></span>kcal
-                                    <img data-th-src="@{/images/Milk Icon.jpg}" alt="" width="30px" height="30px">
-                                    <span data-th-text="${food.protein}"></span>
-                                    <img data-th-src="@{/images/Rice Icon.jpg}" alt="" width="30px" height="30px">
-                                    <span data-th-text="${food.carbs}"></span>
-                                    <img data-th-src="@{/images/Fats Icon.jpg}" alt="" width="30px" height="30px">
-                                    <span data-th-text="${food.fat}"></span>
-                                </div>         
+                            <div class="food-content">
+                                <img data-th-src="@{/images/Calories Icon.jpg}" alt="" width="30px" height="30px">
+                                <span data-th-text="${food.calories}"></span>kcal
+                                <img data-th-src="@{/images/Milk Icon.jpg}" alt="" width="30px" height="30px">
+                                <span data-th-text="${food.protein}"></span>
+                                <img data-th-src="@{/images/Rice Icon.jpg}" alt="" width="30px" height="30px">
+                                <span data-th-text="${food.carbs}"></span>
+                                <img data-th-src="@{/images/Fats Icon.jpg}" alt="" width="30px" height="30px">
+                                <span data-th-text="${food.fat}"></span>    
                             </div>    
                         </div>
                     </div>
+                    <!-- Remove box -->
                     <div class="col-2 text-center remove-margin">
-                        <div class="remove-heading">
-                            <span>Remove</span>
+                        <div class="remove-heading-box">
+                            <span>Remove?</span>
                         </div>
-                        <div class="remove-box">
+                        <div class="remove-content-box">
                             <form action="/food/delete" method="POST">
                                 <input type="hidden" name="user" data-th-value="${username}">
                                 <input type="hidden" name="time" data-th-value="${food.time}">
@@ -216,28 +109,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
-        <!-- <div class="table-food-container1">
-            <h6 data-th-text="${food.title}"></h6>
-            <small class="italicize" data-th-text="${food.time}"></small>
-        </div>
-        <div class="table-food-container2">
-            <img class="text-start" id="food-id" data-th-src="@{{link}(link=${food.image})}" alt="">
-            <div class="table-food-center">
-                <div class="table-food-div">
-                    <img src="./images/Calories Icon.jpg" alt="" width="30px" height="30px">
-                    <span data-th-text="${food.calories}"></span>kcal
-                    <img src="./images/Milk Icon.jpg" alt="" width="30px" height="30px">
-                    <span data-th-text="${food.protein}"></span>
-                    <img src="./images/Rice Icon.jpg" alt="" width="30px" height="30px">
-                    <span data-th-text="${food.carbs}"></span>
-                    <img src="./images/Fats Icon.jpg" alt="" width="30px" height="30px">
-                    <span data-th-text="${food.fat}"></span>
-                </div>       
-            </div>    
-        </div> -->
+    </div>
 
 </body>
 </html>
