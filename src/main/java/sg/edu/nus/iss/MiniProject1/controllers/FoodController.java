@@ -93,6 +93,7 @@ public class FoodController {
         // Get food list from spoontacular
         List<Food> foodList = foodSvc.getFood(minCalories, minCarbs, minProtein, maxFat);
         model.addAttribute("username", user);
+        model.addAttribute("date", (new Date()).toString());
         model.addAttribute("foodList", foodList);
         return "spoonacular";
     }

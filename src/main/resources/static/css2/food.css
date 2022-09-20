@@ -1,4 +1,4 @@
-h2 {
+/* h2 {
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -26,9 +26,52 @@ h5 {
 .home-container img {
     margin-right: 50px;
     border-radius: 30px;
+} */
+
+.home-div img {
+    margin-right: 30px;
+    margin-top: -30px;
+    margin-bottom: 5px;
 }
 
-.center-it-message {
+.navi-div {
+    border-radius: 30px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+}
+
+.navi-div img {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.heading-div {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: seagreen;
+    color: aliceblue;
+}
+
+.homespoon-div {
+    width: 700px;
+}
+
+.form-div {
+    background-color: lightseagreen;
+    opacity: 0.9;
+    border-radius: 30px;
+    height: 250px;
+}
+
+.form-div input {
+    background-color: aquamarine;
+    font-size: small;
+}
+
+/* .center-it-message {
     display: flex;
     justify-content: center;
     padding: 1px;
@@ -46,9 +89,9 @@ h5 {
 .food-heading {
     table-layout: fixed;
     width: 815px;
-}
+} */
 
-.center-it-heading {
+/* .center-it-heading {
     display: flex;
     justify-content: center;
     padding: -5px;
@@ -68,21 +111,15 @@ h5 {
 
 .center-it-form input {
     background-color: aquamarine;
-}
+} */
 
-.form-div {
-    padding: 10px;
-}
-
-.center-it-table {
+/* .center-it-table {
     display: flex;
     justify-content: center;
-}
+} */
 
 
 .id-heading {
-    display: flex;
-    justify-content: center;
     background-color: gold;
     height: 20px;
 }
@@ -91,7 +128,6 @@ h5 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
     height: 70px;
     background-color: lightgoldenrodyellow;
 }
@@ -106,13 +142,17 @@ h5 {
 .table-food-container2 {
     display: flex;
     align-items: center;
-    width: 675px;
     height: 70px;
     background-color: aquamarine;
 }
 
 #food-id {
     height: 70px;
+}
+
+.remove-margin {
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 .table-food-center {
@@ -128,7 +168,7 @@ h5 {
 }
 
 .table-food-div img {
-    margin-left: 50px;
+    margin-left: 30px;
     margin-right: 3px;
     border-radius: 50px;
 }
@@ -144,7 +184,6 @@ h5 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
     height: 70px;
     background-color: lightcoral; 
 }
@@ -167,6 +206,7 @@ h5 {
     display: flex;
     justify-content: center;
     background-color: gray;
+    width: 100px;
     height: 20px;
 }
 
@@ -174,7 +214,7 @@ h5 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
+    width: 100px;
     height: 70px;
     background-color: lightgray; 
 }
