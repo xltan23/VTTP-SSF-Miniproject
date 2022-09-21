@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Running List</title>
+    <title>R.EA.L. Running</title>
     <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link rel="stylesheet" data-th-href="@{/css2/workout.css}">
 </head>
@@ -12,24 +12,25 @@
 </marquee>
 <body data-th-background="@{/images/Running Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
 
+    <!-- Date/Time and Log out positioned at top right corner -->
     <h6 class="text-end"><span data-th-text="${date}"></span></h6>
     <a class="text-decoration-none" data-th-href="@{/}"><h6 class="text-end">Log out</h6></a>
-
-    <div class="container text-start home-div">
-            <a data-th-href="@{/home?user={user}(user=${username})}">
-                <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
-            </a>
-            <span class="display-6">Rest EAt Lift</span>
+    <!-- Home container -->
+    <div class="container text-start mb-3 home-div">
+        <a data-th-href="@{/home?user={user}(user=${username})}">
+            <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
+        </a>
+        <span class="display-6">Rest EAt Lift</span>
     </div>
-
+    <!-- Navigation container -->
     <a class="text-decoration-none" data-th-href="@{/workout/{user}(user=${username})}">
-        <div class="container text-center bg-black text-white navi-div">
+        <div class="container text-center bg-black text-white py-1 mb-2 navi-div">
             <img class="rounded-circle" data-th-src="@{/images/Workout Icon.jpg}" alt="" height="30px">
             <span>Select other workout OR End workout</span>
         </div>   
     </a>
-
-    <div class="container text-center">
+    <!-- Heading containers -->
+    <div class="container text-center mb-2">
         <div class="container row">
             <div class="col-5 heading-div">
                 <span>Your workout session so far:</span>
@@ -39,15 +40,16 @@
             </div>
         </div>
     </div>
-
+    <!-- Workout list and Run options container -->
     <div class="container text-center">
         <div class="container row">
+            <!-- Workout list container -->
             <div class="col-5">
                 <div class="container row" data-th-each="workout:${workoutList}">
-                    <div class="table-name-container">
+                    <div class="workout-heading-box">
                         <h6 data-th-text="${workout.name}"></h6>
                     </div>
-                    <div class="table-info-container">
+                    <div class="workout-content-box">
                         <img data-th-src="@{/images/Timer Icon.jpg}" alt="" width="30px" height="30px">
                         <span data-th-text="${workout.duration}"></span>
                         <img data-th-src="@{/images/Repetition Icon.jpg}" alt="" width="30px" height="30px">
@@ -59,8 +61,10 @@
                     </div>    
                 </div>
             </div>
+            <!-- Run options container -->
             <div class="col">
-                <div class="container row extreme-row">
+                <div class="container row pt-2 mb-2 extreme-row">
+                    <!-- Intervals container -->
                     <div class="col">
                         <div class="container text-center">
                             <div class="image2">
@@ -73,7 +77,7 @@
                             <div>
                                 <form action="/workout/running/save1" method="POST">
                                     <input type="hidden" name="user" data-th-value="${username}">
-                                    <label for="fastrun"><span class="form-small-font">INTERVALS</span></label>
+                                    <label for="fastrun"><span class="form-input-label">INTERVALS</span></label>
                                     <input type="hidden" name="fastrun" data-th-value="${fastrun}">
                                     <div>
                                         <label for="distance"><small>Distance</small></label>
@@ -100,11 +104,12 @@
                                             <option value="10">10</option>
                                         </select>
                                     </div>
-                                    <input class="add-image" type="image" data-th-src="@{/images/Extreme Add Icon.jpg}" alt="Submit" width="40px" height="30px">
+                                    <input class="mt-2" type="image" data-th-src="@{/images/Extreme Add Icon.jpg}" alt="Submit" width="40px" height="30px">
                                 </form>
                             </div>
                         </div>
                     </div>
+                    <!-- Uncomfortable container -->
                     <div class="col">
                         <div class="container text-center">
                             <div class="image2">
@@ -117,7 +122,7 @@
                             <div>
                                 <form action="/workout/running/save2" method="POST">
                                     <input type="hidden" name="user" data-th-value="${username}">
-                                    <label for="modrun"><span class="form-small-font">UNCOMFORTABLE</span></label>
+                                    <label for="modrun"><span class="form-input-label">UNCOMFORTABLE</span></label>
                                     <input type="hidden" name="modrun" data-th-value="${modrun}">
                                     <div>
                                         <label for="distance"><small>Distance</small></label>
@@ -139,11 +144,12 @@
                                             <option value="5">5</option>
                                         </select>
                                     </div>
-                                    <input class="add-image" type="image" data-th-src="@{/images/Extreme Add Icon.jpg}" alt="Submit" width="40px" height="30px">
+                                    <input class="mt-2" type="image" data-th-src="@{/images/Extreme Add Icon.jpg}" alt="Submit" width="40px" height="30px">
                                 </form>
                             </div>
                         </div>
                     </div>
+                    <!-- Long Distance Jog container -->
                     <div class="col">
                         <div class="container text-center">
                             <div class="image2">
@@ -156,7 +162,7 @@
                             <div>
                                 <form action="/workout/running/save3" method="POST">
                                     <input type="hidden" name="user" data-th-value="${username}">
-                                    <label for="slowrun"><span class="form-small-font">LONG DISTANCE JOG</span></label>
+                                    <label for="slowrun"><span class="form-input-label">LONG DISTANCE JOG</span></label>
                                     <input type="hidden" name="slowrun" data-th-value="${slowrun}">
                                     <div>
                                         <label for="distance"><small>Distance</small></label>
@@ -171,7 +177,7 @@
                                             <option value="10000">>10km</option>
                                         </select>
                                     </div>
-                                    <input class="add-image" type="image" data-th-src="@{/images/Extreme Add Icon.jpg}" alt="Submit" width="40px" height="30px">
+                                    <input class="mt-2" type="image" data-th-src="@{/images/Extreme Add Icon.jpg}" alt="Submit" width="40px" height="30px">
                                 </form>
                             </div>
                         </div>
@@ -180,5 +186,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>

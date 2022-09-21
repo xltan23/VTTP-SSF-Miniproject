@@ -12,26 +12,27 @@
 </marquee>
 <body data-th-background="@{/images/Running Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)">
 
+    <!-- Date/Time and Log out positioned at top right corner -->
     <h6 class="text-end"><span data-th-text="${date}"></span></h6>
     <a class="text-decoration-none" data-th-href="@{/}"><h6 class="text-end">Log out</h6></a>
-
-    <div class="container text-center summary-div">
-            <a data-th-href="@{/home?user={user}(user=${username})}">
-                <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="130px">
-            </a>
+    <!-- Home container -->
+    <div class="container text-center mb-3">
+        <a data-th-href="@{/home?user={user}(user=${username})}">
+            <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="130px">
+        </a>
     </div>
-
-    <div class="container text-center bg-black text-white navi-div">
+    <!-- Heading container -->
+    <div class="container text-center bg-black text-white py-1 mb-2 navi-div">
         <img class="rounded-circle" data-th-src="@{/images/Workout Icon.jpg}" alt="" height="30px">
         <span>Workout Summary</span>
     </div>  
 
-    <div class="container text-center">
+    <div class="container text-center mb-3">
         <div class="container row">
-            <div class="table-name-container">
-                <h6 data-th-text="${workoutSummary.name}"></h6>
+            <div class="workoutsum-heading-box">
+                <h5 data-th-text="${workoutSummary.name}"></h5>
             </div>
-            <div class="table-info-container">
+            <div class="workoutsum-content-box">
                 <img data-th-src="@{/images/Intensity Icon.jpg}" alt="" width="50px" height="50px">
                 Total Intensity: &nbsp;
                 <span data-th-text="${workoutSummary.totalIntensity}"></span>
@@ -49,8 +50,8 @@
     </div>
 
     <a class="text-decoration-none" data-th-href="@{/food/{user}(user=${username})}">
-        <div class="container text-center text-black end-div">
-            <img class="rounded-circle" data-th-src="@{/images/Cutlery Icon.jpg}" alt="" height="50px">
+        <div class="container text-center text-black py-3 eat-div">
+            <img class="rounded-circle" data-th-src="@{/images/Cutlery Icon.jpg}" alt="" height="30px">
             <h6>Time to eat!</h6>
         </div>   
     </a>

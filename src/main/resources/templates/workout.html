@@ -12,26 +12,27 @@
 </marquee>
 <body data-th-background="@{/images/Gym Background.jpg}" style="background-size: cover; background-blend-mode: overlay; background-color: rgba(255, 255, 255, 0.486)" >
 
+    <!-- Date/Time and Log out positioned at top right corner -->
     <h6 class="text-end"><span data-th-text="${date}"></span></h6>
     <a class="text-decoration-none" data-th-href="@{/}"><h6 class="text-end">Log out</h6></a>
-
-    <div class="container text-start home-div">
-            <a data-th-href="@{/home?user={user}(user=${username})}">
-                <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
-            </a>
-            <span class="display-6">Rest EAt Lift</span>
+    <!-- Home container -->
+    <div class="container text-start mb-3 home-div">
+        <a data-th-href="@{/home?user={user}(user=${username})}">
+            <img class="rounded" data-th-src="@{/images/Application Logo.png}" alt="" height="100px">
+        </a>
+        <span class="display-6">Rest EAt Lift</span>
     </div>
-
-    <div class="container text-center bg-black text-white navi-div">
+    <!-- Navigation container -->
+    <div class="container text-center bg-black text-white py-1 mb-2 navi-div">
         <form action="/workout/summary" method="POST">
             <input type="hidden" name="user" data-th-value="${username}">
-            <label for="workoutName"><span class="end-workout-text">End workout?</span></label>
-            <input type="text" id="end-workout-text" name="workoutName" placeholder="Name your workout session" size="30" required>
-            <input type="image" data-th-src="@{/images/Workout Submit Icon.jpg}" alt="Submit" width="20px" height="30px">
+            <label for="workoutName" class="mx-3"><span>End workout?</span></label>
+            <input type="text" id="end-input" name="workoutName" placeholder="Name your workout session" size="30" required>
+            <input type="image" class="mx-3" data-th-src="@{/images/Workout Submit Icon.jpg}" alt="Submit" width="20px" height="30px">
         </form>
     </div>
-
-    <div class="container text-center">
+    <!-- Heading containers -->
+    <div class="container text-center mb-2">
         <div class="container row">
             <div class="col-5 heading-div">
                 <span>Your workout session so far:</span>
@@ -41,15 +42,16 @@
             </div>
         </div>
     </div>
-
+    <!-- Workout list and Workout options container -->
     <div class="container text-center">
         <div class="container row">
+            <!-- Workout list container -->
             <div class="col-5">
                 <div class="container row" data-th-each="workout:${workoutList}">
-                    <div class="table-name-container">
+                    <div class="workout-heading-box">
                         <h6 data-th-text="${workout.name}"></h6>
                     </div>
-                    <div class="table-info-container">
+                    <div class="workout-content-box">
                         <img data-th-src="@{/images/Timer Icon.jpg}" alt="" width="30px" height="30px">
                         <span data-th-text="${workout.duration}"></span>
                         <img data-th-src="@{/images/Repetition Icon.jpg}" alt="" width="30px" height="30px">
@@ -61,8 +63,10 @@
                     </div>    
                 </div>
             </div>
+            <!-- Workout options container -->
             <div class="col">
-                <div class="container text-center row workout-div">
+                <div class="container row text-center mt-5">
+                    <!-- Image link to Static Duration Page -->
                     <div class="col image">
                         <a data-th-href="@{/workout/static-duration/{user}(user=${username})}">
                             <img data-th-src="@{/images/Plank Icon.jpg}" alt="" width="150px" height="150px">
@@ -72,6 +76,7 @@
                             </div>
                         </a>
                     </div>
+                    <!-- Image link to Static Repetition Page -->
                     <div class="col image">
                         <a data-th-href="@{/workout/static-repetition/{user}(user=${username})}">
                             <img data-th-src="@{/images/Crunches Icon.jpg}" alt="" width="150px" height="150px">
@@ -81,6 +86,7 @@
                             </div>
                         </a>
                     </div>
+                    <!-- Image link to Running Page -->
                     <div class="col image">
                         <a data-th-href="@{/workout/running/{user}(user=${username})}">
                             <img data-th-src="@{/images/Running Icon.jpg}" alt="" width="150px" height="150px">
