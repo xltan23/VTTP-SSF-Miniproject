@@ -64,7 +64,7 @@
 .remove-heading-box {
     display: flex;
     justify-content: center;
-    height: 20px;
+    height: 25px;
     background-color: orangered;
 }
 
