@@ -206,14 +206,14 @@ public class WorkoutSumService {
 
     // Intensity to determine protein recommended (To be tested and verified)
     public Integer recProteinCalculator(Integer totalIntensity) {
-        double rp = totalIntensity/18;
+        double rp = totalIntensity/165;
         Integer recProtein = (int)rp;
         return recProtein;
     }
 
     // Intensity to determine carbs recommended (To be tested and verified)
     public Integer recCarbsCalculator(Integer totalIntensity) {
-        double rc = totalIntensity/14;
+        double rc = totalIntensity/150;
         Integer recCarbs = (int)rc;
         return recCarbs;
     }
@@ -229,10 +229,10 @@ public class WorkoutSumService {
 
     public Integer maximumFatsGauge(Integer totalIntensity) {
         if (totalIntensity <= 3000) {
-            return 30;
+            return 15;
         } else if (totalIntensity > 3000 && totalIntensity <= 8000) {
-            return 60;
+            return 30;
         }
-        return 90;       
+        return 50;       
     }
 }
